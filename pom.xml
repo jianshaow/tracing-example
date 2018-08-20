@@ -12,6 +12,7 @@
     <modules>
         <module>p6spy-config</module>
         <module>cxf-example</module>
+        <module>webapp-example</module>
     </modules>
 
     <properties>
