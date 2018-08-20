@@ -4,10 +4,12 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import io.jaegertracing.Configuration;
+import io.jaegertracing.internal.propagation.B3TextMapCodec;
 import io.jaegertracing.internal.reporters.RemoteReporter;
 import io.jaegertracing.internal.samplers.ConstSampler;
 import io.jaegertracing.thrift.internal.senders.HttpSender;
 import io.opentracing.Tracer;
+import io.opentracing.propagation.Format;
 import io.opentracing.util.GlobalTracer;
 
 public class TracingServletContextListener implements ServletContextListener {
@@ -18,7 +20,10 @@ public class TracingServletContextListener implements ServletContextListener {
         final HttpSender sender = new HttpSender.Builder("http://localhost:14268/api/traces").build();
         final RemoteReporter reporter = new RemoteReporter.Builder().withSender(sender).build();
         final ConstSampler sampler = new ConstSampler(true);
-        final Tracer tracer = configuration.getTracerBuilder().withReporter(reporter).withSampler(sampler).build();
+        final B3TextMapCodec b3Codec = new B3TextMapCodec.Builder().build();
+        final Tracer tracer = configuration.getTracerBuilder().registerInjector(Format.Builtin.HTTP_HEADERS, b3Codec)
+                .registerExtractor(Format.Builtin.HTTP_HEADERS, b3Codec).withReporter(reporter).withSampler(sampler)
+                .build();
         GlobalTracer.register(tracer);
     }
 
