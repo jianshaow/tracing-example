@@ -49,12 +49,6 @@
         <property name="arguments" ref="tracer" />
     </bean>
 
-    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean" lazy-init="false">
-        <property name="targetClass" value="io.opentracing.util.GlobalTracer" />
-        <property name="targetMethod" value="register" />
-        <property name="arguments" ref="tracer" />
-    </bean>
-
     <bean id="tracingFeature" class="org.apache.cxf.tracing.opentracing.OpenTracingFeature">
         <constructor-arg ref="tracer" />
     </bean>
