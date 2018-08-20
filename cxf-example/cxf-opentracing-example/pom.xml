@@ -9,10 +9,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>opentracing-example</artifactId>
+    <artifactId>cxf-opentracing-example</artifactId>
     <packaging>war</packaging>
 
-    <name>opentracing-example</name>
+    <name>cxf-opentracing-example</name>
 
     <properties>
         <cxf.version>3.2.5</cxf.version>

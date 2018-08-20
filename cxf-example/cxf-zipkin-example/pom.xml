@@ -9,10 +9,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>zipkin-example</artifactId>
+    <artifactId>cxf-zipkin-example</artifactId>
     <packaging>war</packaging>
 
-    <name>zipkin-example</name>
+    <name>cxf-zipkin-example</name>
 
     <properties>
         <cxf.version>3.1.12</cxf.version>

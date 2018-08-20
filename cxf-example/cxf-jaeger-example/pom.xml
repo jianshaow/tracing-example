@@ -9,10 +9,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>jaeger-example</artifactId>
+    <artifactId>cxf-jaeger-example</artifactId>
     <packaging>war</packaging>
 
-    <name>jaeger-example</name>
+    <name>cxf-jaeger-example</name>
 
     <properties>
         <cxf.version>3.2.5</cxf.version>

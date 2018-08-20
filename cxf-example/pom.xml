@@ -16,9 +16,9 @@
 
     <modules>
         <module>echo-service</module>
-        <module>zipkin-example</module>
-        <module>jaeger-example</module>
-        <module>opentracing-example</module>
+        <module>cxf-zipkin-example</module>
+        <module>cxf-jaeger-example</module>
+        <module>cxf-opentracing-example</module>
     </modules>
 
     <properties>
