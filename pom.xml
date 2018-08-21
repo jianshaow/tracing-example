@@ -13,6 +13,7 @@
         <module>p6spy-config</module>
         <module>cxf-example</module>
         <module>webapp-example</module>
+        <module>spring-example</module>
     </modules>
 
     <properties>
