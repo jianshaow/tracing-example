@@ -21,8 +21,7 @@
     <dependencies>
         <dependency>
             <groupId>com.test.tracing</groupId>
-            <artifactId>echo-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <artifactId>cxf-echo-service</artifactId>
         </dependency>
 
         <dependency>

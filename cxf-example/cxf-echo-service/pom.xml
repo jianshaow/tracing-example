@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>echo-service</artifactId>
+    <artifactId>cxf-echo-service</artifactId>
 
     <name>echo-service</name>
 

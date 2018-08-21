@@ -7,6 +7,7 @@ import io.jaegertracing.internal.JaegerTracer;
 import io.jaegertracing.internal.propagation.B3TextMapCodec;
 import io.jaegertracing.internal.reporters.RemoteReporter;
 import io.jaegertracing.internal.samplers.ConstSampler;
+import io.jaegertracing.spi.Reporter;
 import io.jaegertracing.thrift.internal.senders.HttpSender;
 import io.opentracing.Tracer;
 import io.opentracing.propagation.Format;
@@ -18,7 +19,8 @@ public class TracerConfig {
     @Bean
     public Tracer tracer() {
         final HttpSender sender = new HttpSender.Builder("http://localhost:14268/api/traces").build();
-        final RemoteReporter reporter = new RemoteReporter.Builder().withSender(sender).build();
+        final Reporter reporter = new RemoteReporter.Builder().withSender(sender).build();
+        //        final Reporter reporter = new LoggingReporter();
         final ConstSampler sampler = new ConstSampler(true);
         final B3TextMapCodec b3Codec = new B3TextMapCodec.Builder().build();
         final Tracer tracer = new JaegerTracer.Builder("echo-service")
