@@ -14,10 +14,6 @@
 
     <name>webpp-jaeger-example</name>
 
-    <properties>
-        <jaeger.version>0.30.4</jaeger.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -42,14 +38,7 @@
 
         <dependency>
             <groupId>io.jaegertracing</groupId>
-            <artifactId>jaeger-core</artifactId>
-            <version>${jaeger.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.jaegertracing</groupId>
             <artifactId>jaeger-client</artifactId>
-            <version>${jaeger.version}</version>
         </dependency>
 
         <dependency>
