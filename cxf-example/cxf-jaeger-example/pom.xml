@@ -14,10 +14,6 @@
 
     <name>cxf-jaeger-example</name>
 
-    <properties>
-        <cxf.version>3.2.5</cxf.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.test.tracing</groupId>
@@ -55,7 +51,6 @@
         <dependency>
             <groupId>javax.ws.rs</groupId>
             <artifactId>javax.ws.rs-api</artifactId>
-            <version>2.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>

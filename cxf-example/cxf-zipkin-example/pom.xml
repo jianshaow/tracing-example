@@ -16,6 +16,7 @@
 
     <properties>
         <cxf.version>3.1.12</cxf.version>
+        <jaxrs-api.version>2.0.1</jaxrs-api.version>
         <brave.version>5.2.0</brave.version>
         <zipkin-reporter.version>2.7.7</zipkin-reporter.version>
     </properties>
@@ -23,9 +24,9 @@
     <dependencies>
         <dependency>
             <groupId>com.test.tracing</groupId>
-            <artifactId>echo-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <artifactId>cxf-echo-service</artifactId>
         </dependency>
+
         <dependency>
             <groupId>io.zipkin.brave</groupId>
             <artifactId>brave-instrumentation-servlet</artifactId>
