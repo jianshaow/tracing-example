@@ -48,7 +48,7 @@
             </dependency>
             <dependency>
                 <groupId>io.github.openfeign</groupId>
-                <artifactId>feign-jaxrs</artifactId>
+                <artifactId>feign-jaxrs2</artifactId>
                 <version>${feign.version}</version>
             </dependency>
             <dependency>
