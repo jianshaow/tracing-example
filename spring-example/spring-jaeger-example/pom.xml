@@ -16,6 +16,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.test.tracing</groupId>
+            <artifactId>spring-echo-service</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>io.opentracing</groupId>
             <artifactId>opentracing-api</artifactId>
             <scope>provided</scope>
@@ -29,6 +34,11 @@
         <dependency>
             <groupId>io.opentracing.contrib</groupId>
             <artifactId>opentracing-spring-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.openfeign.opentracing</groupId>
+            <artifactId>feign-opentracing</artifactId>
         </dependency>
 
         <dependency>
@@ -47,6 +57,20 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-jaxrs</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.ws.rs</groupId>
+                    <artifactId>jsr311-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

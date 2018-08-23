@@ -1,4 +1,4 @@
-package com.test.tracing.mvc.config;
+package com.test.tracing.service.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
