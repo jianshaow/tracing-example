@@ -1,8 +1,5 @@
 package com.test.tracing.impl;
 
-import javax.ws.rs.core.Context;
-
-import org.apache.cxf.tracing.TracerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,16 +12,17 @@ public class AuralServiceImpl implements AuralService {
 
     private MindService mindService;
 
-    @Context
-    private TracerContext tracerContext;
-
     @Override
     public String hear(String msg) {
         final int latency = SleepUtil.sleepRandomly(100);
         logger.info("I got the msg finally in {} ms.", latency);
-        tracerContext.timeline("recall in mind...");
+        beforeCallMindService();
         final String result = mindService.recall(msg);
         return result;
+    }
+
+    protected void beforeCallMindService() {
+        // do nothing
     }
 
     public void setMindService(MindService mindService) {

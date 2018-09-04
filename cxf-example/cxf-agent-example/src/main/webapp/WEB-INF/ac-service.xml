@@ -9,13 +9,13 @@
         <property name="speakService" ref="speakServiceClient" />
     </bean>
 
-    <bean id="auralService" class="com.test.tracing.impl.AuralServiceTracerContextImpl">
+    <bean id="auralService" class="com.test.tracing.impl.AuralServiceImpl">
         <property name="mindService" ref="mindServiceClient" />
     </bean>
-    <bean id="speakService" class="com.test.tracing.impl.SpeakServiceTracerContextImpl">
+    <bean id="speakService" class="com.test.tracing.impl.SpeakServiceImpl">
         <property name="mindService" ref="mindServiceClient" />
     </bean>
-    <bean id="mindService" class="com.test.tracing.impl.MindServiceTracerContextImpl">
+    <bean id="mindService" class="com.test.tracing.impl.MindServiceImpl">
         <property name="template" ref="jdbcTemplate" />
     </bean>
 </beans>

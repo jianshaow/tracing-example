@@ -4,7 +4,7 @@
 
     <parent>
         <groupId>com.test.tracing</groupId>
-        <artifactId>tracing-root</artifactId>
+        <artifactId>tracing-example</artifactId>
         <relativePath>../</relativePath>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -12,13 +12,15 @@
     <artifactId>cxf-example</artifactId>
     <packaging>pom</packaging>
 
-    <name>tracing</name>
+    <name>cxf-example</name>
 
     <modules>
         <module>cxf-echo-service</module>
         <module>cxf-zipkin-example</module>
         <module>cxf-jaeger-example</module>
         <module>cxf-opentracing-example</module>
+        <module>cxf-agent-example</module>
+        <module>cxf-opentracing-agent-rules</module>
     </modules>
 
     <properties>

@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.test.tracing</groupId>
-    <artifactId>tracing-root</artifactId>
+    <artifactId>tracing-example</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>tracing</name>
+    <name>tracing-example</name>
 
     <modules>
         <module>p6spy-config</module>
