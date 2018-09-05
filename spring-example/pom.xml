@@ -12,7 +12,7 @@
     <artifactId>spring-example</artifactId>
     <packaging>pom</packaging>
 
-    <name>tracing</name>
+    <name>spring-example</name>
 
     <modules>
         <module>spring-echo-service</module>

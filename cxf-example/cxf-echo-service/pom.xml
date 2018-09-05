@@ -11,7 +11,7 @@
 
     <artifactId>cxf-echo-service</artifactId>
 
-    <name>echo-service</name>
+    <name>cxf-echo-service</name>
 
     <dependencies>
         <dependency>

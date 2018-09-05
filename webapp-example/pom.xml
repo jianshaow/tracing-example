@@ -12,7 +12,7 @@
     <artifactId>webapp-example</artifactId>
     <packaging>pom</packaging>
 
-    <name>tracing</name>
+    <name>webapp-example</name>
 
     <modules>
         <module>webapp-jaeger-example</module>
