@@ -12,7 +12,7 @@
     <artifactId>webapp-jaeger-example</artifactId>
     <packaging>war</packaging>
 
-    <name>webpp-jaeger-example</name>
+    <name>webapp-jaeger-example</name>
 
     <dependencies>
         <dependency>
