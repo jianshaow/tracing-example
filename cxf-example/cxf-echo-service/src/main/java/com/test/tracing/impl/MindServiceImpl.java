@@ -14,14 +14,14 @@ public class MindServiceImpl implements MindService {
 
     @Override
     public String respond(String msg) {
-        final int latency = SleepUtil.sleepRandomly(100);
+        final int latency = SleepUtil.sleepRandomly(50);
         logger.info("I lost my mind for {} ms.", latency);
         return "echo back: " + msg;
     }
 
     @Override
     public String recall(String something) {
-        final int latency = SleepUtil.sleepRandomly(100);
+        final int latency = SleepUtil.sleepRandomly(50);
         logger.info("I lost my mind for {} ms.", latency);
         beforeCallMemory();
         template.execute("select * from application");

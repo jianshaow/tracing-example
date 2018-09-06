@@ -14,7 +14,7 @@ public class AuralServiceImpl implements AuralService {
 
     @Override
     public String hear(String msg) {
-        final int latency = SleepUtil.sleepRandomly(100);
+        final int latency = SleepUtil.sleepRandomly(50);
         logger.info("I got the msg finally in {} ms.", latency);
         beforeCallMindService();
         final String result = mindService.recall(msg);

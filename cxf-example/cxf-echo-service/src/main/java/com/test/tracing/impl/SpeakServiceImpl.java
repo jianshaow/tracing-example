@@ -16,7 +16,7 @@ public class SpeakServiceImpl implements SpeakService {
     public String say(String msg) {
         beforeCallMindService();
         final String result = mindService.respond(msg);
-        final int latency = SleepUtil.sleepRandomly(100);
+        final int latency = SleepUtil.sleepRandomly(50);
         logger.info("I stuttered for {} ms.", latency);
         return result;
     }
