@@ -1,7 +1,9 @@
 package com.test.opentracing;
 
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import javax.ws.rs.core.MultivaluedMap;
 
@@ -17,7 +19,8 @@ public class JaxRsHeadersTextMap implements TextMap {
 
     @Override
     public Iterator<Entry<String, String>> iterator() {
-        throw new UnsupportedOperationException("This class should be used only with tracer#inject()");
+        return headers.entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, TextMapUtils::getFirstValueOrEmpty)).entrySet().iterator();
     }
 
     @Override

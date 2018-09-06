@@ -1,31 +1,23 @@
-RULE CXF Client In
-CLASS org.apache.cxf.jaxrs.client.ClientProxyImpl
-METHOD invoke
+RULE CXF Enable Client Tracing Feature
+CLASS org.apache.cxf.jaxrs.client.JAXRSClientFactoryBean
+METHOD create
 HELPER io.opentracing.contrib.agent.OpenTracingHelper
-BIND
-  method : java.lang.String = $2.getName();
-  tracer : io.opentracing.Tracer = getTracer();
-  scope : io.opentracing.Scope = tracer.buildSpan(method).startActive(true);
-  span : io.opentracing.Span = scope.span();
-  headers : javax.ws.rs.core.MultivaluedMap = $this.getHeaders();
-  textMap: com.test.opentracing.JaxRsHeadersTextMap = new com.test.opentracing.JaxRsHeadersTextMap(headers);
 AT ENTRY
+BIND
+  feature : org.apache.cxf.feature.Feature = new com.test.opentracing.cxf.ClientFeature(getTracer());
 IF TRUE
 DO
-  tracer.inject(span.context(), io.opentracing.propagation.Format$Builtin.HTTP_HEADERS, textMap);
-  span.setTag(io.opentracing.tag.Tags.SPAN_KIND.getKey(), io.opentracing.tag.Tags.SPAN_KIND_CLIENT);
-  $this.headers(headers);
+  $this.getFeatures().add(feature);
 ENDRULE
 
-RULE CXF Client Out
-CLASS org.apache.cxf.jaxrs.client.ClientProxyImpl
-METHOD invoke
+RULE CXF Enable Server Tracing Feature
+CLASS org.apache.cxf.jaxrs.JAXRSServerFactoryBean
+METHOD create
 HELPER io.opentracing.contrib.agent.OpenTracingHelper
+AT ENTRY
 BIND
-  tracer : io.opentracing.Tracer = getTracer();
-  scope : io.opentracing.Scope = tracer.scopeManager().active();
-AT EXIT
-IF scope != null
+  feature : org.apache.cxf.feature.Feature = new com.test.opentracing.cxf.ServerFeature(getTracer());
+IF TRUE
 DO
-  scope.close();
+  $this.getFeatures().add(feature);
 ENDRULE
