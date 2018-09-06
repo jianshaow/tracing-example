@@ -11,6 +11,7 @@
 
     <modules>
         <module>p6spy-config</module>
+        <module>jetty-opentracing-agent-rules</module>
         <module>cxf-example</module>
         <module>webapp-example</module>
         <module>spring-example</module>

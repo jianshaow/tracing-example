@@ -20,6 +20,7 @@
         <module>cxf-jaeger-example</module>
         <module>cxf-opentracing-example</module>
         <module>cxf-agent-example</module>
+        <module>cxf-opentracing-feature</module>
         <module>cxf-opentracing-agent-rules</module>
     </modules>
 
@@ -59,6 +60,11 @@
                 <groupId>javax.ws.rs</groupId>
                 <artifactId>javax.ws.rs-api</artifactId>
                 <version>${jaxrs-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-core</artifactId>
+                <version>${cxf.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.cxf</groupId>
