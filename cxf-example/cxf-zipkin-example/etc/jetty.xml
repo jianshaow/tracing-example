@@ -13,11 +13,8 @@
         <Arg>jdbc/test.ds</Arg>
         <Arg>
             <New class="com.mchange.v2.c3p0.ComboPooledDataSource">
-                <!-- 
-                 <Set name="driverClass">oracle.jdbc.driver.OracleDriver</Set>
-                 -->
-                <Set name="driverClass">io.opentracing.contrib.jdbc.TracingDriver</Set>
-                <Set name="jdbcUrl">jdbc:tracing:mysql://localhost:3306/mydb?useSSL=false?traceWithActiveSpanOnly=true</Set>
+                <Set name="driverClass">com.p6spy.engine.spy.P6SpyDriver</Set>
+                <Set name="jdbcUrl">jdbc:p6spy:mysql://localhost:3306/mydb?useSSL=false</Set>
                 <Set name="user"><Ref id="db_usr" /></Set>
                 <Set name="password"><Ref id="db_pwd" /></Set>
                 <Set name="initialPoolSize">1</Set>

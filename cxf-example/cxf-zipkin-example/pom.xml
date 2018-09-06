@@ -137,9 +137,9 @@
                         <version>0.2.15</version>
                     </dependency>
                     <dependency>
-                        <groupId>com.oracle</groupId>
-                        <artifactId>ojdbc14</artifactId>
-                        <version>10.2.0.1.0</version>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>8.0.12</version>
                     </dependency>
                     <dependency>
                         <groupId>io.zipkin.brave</groupId>

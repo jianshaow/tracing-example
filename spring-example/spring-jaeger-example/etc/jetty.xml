@@ -20,7 +20,7 @@
                  <Set name="driverClass">oracle.jdbc.driver.OracleDriver</Set>
                  -->
                 <Set name="driverClass">io.opentracing.contrib.jdbc.TracingDriver</Set>
-                <Set name="jdbcUrl">jdbc:tracing:mysql://localhost:3306/mydb?useSSL=false?traceWithActiveSpanOnly=true</Set>
+                <Set name="jdbcUrl">jdbc:tracing:mysql://localhost:3306/mydb?traceWithActiveSpanOnly=true;useSSL=false</Set>
                 <Set name="user"><Ref id="db_usr" /></Set>
                 <Set name="password"><Ref id="db_pwd" /></Set>
                 <Set name="initialPoolSize">1</Set>
