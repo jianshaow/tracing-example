@@ -20,8 +20,10 @@
         <module>cxf-jaeger-example</module>
         <module>cxf-opentracing-example</module>
         <module>cxf-agent-example</module>
+        <module>cxf-agent-lightweight-example</module>
         <module>cxf-opentracing-feature</module>
         <module>cxf-opentracing-agent-rules</module>
+        <module>cxf-opentracing-agent-lightweight-rules</module>
     </modules>
 
     <properties>

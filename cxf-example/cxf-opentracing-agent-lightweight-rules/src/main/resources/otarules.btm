@@ -1,0 +1,31 @@
+RULE CXF Client In
+CLASS org.apache.cxf.jaxrs.client.ClientProxyImpl
+METHOD invoke
+HELPER io.opentracing.contrib.agent.OpenTracingHelper
+BIND
+  method : java.lang.String = $2.getName();
+  tracer : io.opentracing.Tracer = getTracer();
+  scope : io.opentracing.Scope = tracer.buildSpan(method).startActive(true);
+  span : io.opentracing.Span = scope.span();
+  headers : javax.ws.rs.core.MultivaluedMap = $this.getHeaders();
+  textMap: com.test.opentracing.JaxRsHeadersTextMap = new com.test.opentracing.JaxRsHeadersTextMap(headers);
+AT ENTRY
+IF TRUE
+DO
+  tracer.inject(span.context(), io.opentracing.propagation.Format$Builtin.HTTP_HEADERS, textMap);
+  span.setTag(io.opentracing.tag.Tags.SPAN_KIND.getKey(), io.opentracing.tag.Tags.SPAN_KIND_CLIENT);
+  $this.headers(headers);
+ENDRULE
+
+RULE CXF Client Out
+CLASS org.apache.cxf.jaxrs.client.ClientProxyImpl
+METHOD invoke
+HELPER io.opentracing.contrib.agent.OpenTracingHelper
+BIND
+  tracer : io.opentracing.Tracer = getTracer();
+  scope : io.opentracing.Scope = tracer.scopeManager().active();
+AT EXIT
+IF scope != null
+DO
+  scope.close();
+ENDRULE
