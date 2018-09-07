@@ -12,7 +12,7 @@
     <artifactId>cxf-opentracing-feature</artifactId>
     <packaging>jar</packaging>
 
-    <name>cxf-opentracing-feature</name>
+    <name>${project.groupId}:${project.artifactId}</name>
 
     <properties>
         <opentracing.version>0.31.0</opentracing.version>

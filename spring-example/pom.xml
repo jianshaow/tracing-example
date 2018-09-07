@@ -12,7 +12,7 @@
     <artifactId>spring-example</artifactId>
     <packaging>pom</packaging>
 
-    <name>spring-example</name>
+    <name>${project.groupId}:${project.artifactId}</name>
 
     <modules>
         <module>spring-echo-service</module>

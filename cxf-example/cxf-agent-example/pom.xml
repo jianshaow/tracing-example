@@ -12,7 +12,7 @@
     <artifactId>cxf-agent-example</artifactId>
     <packaging>war</packaging>
 
-    <name>cxf-agent-example</name>
+    <name>${project.groupId}:${project.artifactId}</name>
 
     <properties>
         <cxf.version>3.1.12</cxf.version>

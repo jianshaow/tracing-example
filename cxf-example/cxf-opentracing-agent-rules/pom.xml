@@ -12,5 +12,5 @@
     <artifactId>cxf-opentracing-agent-rules</artifactId>
     <packaging>jar</packaging>
 
-    <name>cxf-opentracing-agent-rules</name>
+    <name>${project.groupId}:${project.artifactId}</name>
 </project>

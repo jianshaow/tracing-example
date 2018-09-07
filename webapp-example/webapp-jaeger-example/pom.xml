@@ -13,7 +13,7 @@
     <artifactId>webapp-jaeger-example</artifactId>
     <packaging>war</packaging>
 
-    <name>webapp-jaeger-example</name>
+    <name>${project.groupId}:${project.artifactId}</name>
 
     <dependencies>
         <dependency>
