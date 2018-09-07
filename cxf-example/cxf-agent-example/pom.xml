@@ -31,6 +31,7 @@
             <groupId>com.test.tracing</groupId>
             <artifactId>cxf-opentracing-agent-rules</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -80,7 +81,7 @@
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>com.test.tracing</groupId>
-                                    <artifactId>jetty-opentracing-agent-rules</artifactId>
+                                    <artifactId>cxf-opentracing-agent-rules</artifactId>
                                     <version>0.0.1-SNAPSHOT</version>
                                 </artifactItem>
                             </artifactItems>
