@@ -2,20 +2,23 @@ package com.test.servlet;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import io.opentracing.contrib.apache.http.client.TracingHttpClientBuilder;
 
 public class EchoServiceServlet extends HttpServlet {
 
@@ -23,34 +26,41 @@ public class EchoServiceServlet extends HttpServlet {
 
     private static final long serialVersionUID = -7766401686496991505L;
 
+    private HttpClient httpClient = TracingHttpClientBuilder.create().build();
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        accessDB();
-        resp.setContentType("text/plain");
-        try (final InputStream in = req.getInputStream(); final OutputStream out = resp.getOutputStream()) {
-            byte[] buffer = new byte[100];
-            while (in.read(buffer) != -1) {
-                out.write(buffer);
-            }
-            out.close();
+        try (final InputStream in = req.getInputStream(); final PrintWriter out = resp.getWriter()) {
+            resp.setContentType("text/plain");
+            final String msg = IOUtils.toString(in, "UTF-8");
+            logger.info("be requested to echo a message: {}", msg);
+            String result = this.callAuralService(msg);
+            result = this.callMindService(msg);
+            out.println(result);
+            logger.info("echo back the result: {}", result);
             in.close();
+            out.close();
         }
     }
 
-    private void accessDB() {
-        DataSource ds = null;
-        try {
-            final InitialContext ctx = new InitialContext();
-            ds = (DataSource) ctx.lookup("jdbc/test.ds");
-            try (final Connection conn = ds.getConnection(); final Statement stmt = conn.createStatement()) {
-                stmt.executeQuery("select * from application");
-                stmt.close();
-                conn.close();
-            } catch (SQLException e) {
-                logger.error(e.getMessage(), e);
-            }
-        } catch (NamingException e) {
-            logger.error(e.getMessage(), e);
+    private String callAuralService(String msg) throws ClientProtocolException, IOException {
+        return call(msg, "http://localhost:8080/aural");
+    }
+
+    private String callMindService(String msg) throws ClientProtocolException, IOException {
+        return call(msg, "http://localhost:8080/mind");
+    }
+
+    private String call(String msg, final String uri)
+            throws UnsupportedEncodingException, IOException, ClientProtocolException {
+        final HttpPost request = new HttpPost(uri);
+        request.setEntity(new StringEntity(msg));
+        final HttpResponse response = httpClient.execute(request);
+        String result = null;
+        try (InputStream in = response.getEntity().getContent()) {
+            result = IOUtils.toString(in, "UTF-8");
+            in.close();
         }
+        return result;
     }
 }

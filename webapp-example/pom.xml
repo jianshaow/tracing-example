@@ -23,6 +23,7 @@
         <opentracing.version>0.31.0</opentracing.version>
         <opentracing-jdbc.version>0.0.7</opentracing-jdbc.version>
         <opentracing-filter.version>0.1.1</opentracing-filter.version>
+        <opentracing-httpclient.version>0.1.0</opentracing-httpclient.version>
     </properties>
 
     <dependencyManagement>
@@ -54,6 +55,18 @@
                 <artifactId>opentracing-web-servlet-filter</artifactId>
                 <version>${opentracing-filter.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.opentracing.contrib</groupId>
+                <artifactId>opentracing-apache-httpclient</artifactId>
+                <version>${opentracing-httpclient.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.6</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 </project>

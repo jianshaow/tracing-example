@@ -26,4 +26,24 @@
         <servlet-name>EchoServiceServlet</servlet-name>
         <url-pattern>/echo</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AuralServiceServlet</servlet-name>
+        <servlet-class>com.test.servlet.AuralServiceServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AuralServiceServlet</servlet-name>
+        <url-pattern>/aural</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MindServiceServlet</servlet-name>
+        <servlet-class>com.test.servlet.MindServiceServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MindServiceServlet</servlet-name>
+        <url-pattern>/mind</url-pattern>
+    </servlet-mapping>
 </web-app>
