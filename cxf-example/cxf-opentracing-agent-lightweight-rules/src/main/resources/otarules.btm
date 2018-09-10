@@ -1,31 +1,31 @@
 RULE CXF Client In
 CLASS org.apache.cxf.jaxrs.client.ClientProxyImpl
-METHOD invoke
+METHOD doChainedInvocation
 HELPER io.opentracing.contrib.agent.OpenTracingHelper
-BIND
-  method : java.lang.String = $2.getName();
-  tracer : io.opentracing.Tracer = getTracer();
-  scope : io.opentracing.Scope = tracer.buildSpan(method).startActive(true);
-  span : io.opentracing.Span = scope.span();
-  headers : javax.ws.rs.core.MultivaluedMap = $this.getHeaders();
-  textMap: com.test.opentracing.JaxRsHeadersTextMap = new com.test.opentracing.JaxRsHeadersTextMap(headers);
 AT ENTRY
+BIND
+  httpMethod : java.lang.String = $3.getHttpMethod();
+  uri : java.lang.String = $1.toString();
+  scope : io.opentracing.Scope = getTracer().buildSpan(httpMethod + " " + uri).startActive(true);
 IF TRUE
 DO
-  tracer.inject(span.context(), io.opentracing.propagation.Format$Builtin.HTTP_HEADERS, textMap);
-  span.setTag(io.opentracing.tag.Tags.SPAN_KIND.getKey(), io.opentracing.tag.Tags.SPAN_KIND_CLIENT);
-  $this.headers(headers);
+  scope.span().setTag(io.opentracing.tag.Tags.SPAN_KIND.getKey(), io.opentracing.tag.Tags.SPAN_KIND_CLIENT);
+  scope.span().setTag(io.opentracing.tag.Tags.HTTP_METHOD.getKey(), httpMethod);
+  scope.span().setTag(io.opentracing.tag.Tags.HTTP_URL.getKey(), uri);
+  getTracer().inject(scope.span().context(), io.opentracing.propagation.Format$Builtin.HTTP_HEADERS, new com.test.opentracing.JaxRsHeadersTextMap($2));
 ENDRULE
 
 RULE CXF Client Out
 CLASS org.apache.cxf.jaxrs.client.ClientProxyImpl
-METHOD invoke
+METHOD handleResponse
 HELPER io.opentracing.contrib.agent.OpenTracingHelper
+AT ENTRY
 BIND
-  tracer : io.opentracing.Tracer = getTracer();
-  scope : io.opentracing.Scope = tracer.scopeManager().active();
-AT EXIT
+  scope : io.opentracing.Scope = getTracer().scopeManager().active();
+  inMessage : java.util.Map = $1.getExchange().getInMessage();
+  returnCode : java.lang.Integer = inMessage.get("org.apache.cxf.message.Message.RESPONSE_CODE");
 IF scope != null
 DO
+  scope.span().setTag(io.opentracing.tag.Tags.HTTP_STATUS.getKey(), returnCode);
   scope.close();
 ENDRULE
