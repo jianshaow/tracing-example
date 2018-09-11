@@ -35,7 +35,7 @@ public class EchoServiceServlet extends HttpServlet {
             final String msg = IOUtils.toString(in, "UTF-8");
             logger.info("be requested to echo a message: {}", msg);
             String result = this.callAuralService(msg);
-            result = this.callMindService(msg);
+            result = this.callMindService(result);
             out.println(result);
             logger.info("echo back the result: {}", result);
             in.close();
