@@ -1,0 +1,17 @@
+spring.application.name: echo-service
+
+c3p0:
+  driverClass: io.opentracing.contrib.jdbc.TracingDriver
+  jdbcUrl: jdbc:tracing:mysql://localhost:3306/mydb?traceWithActiveSpanOnly=true;useSSL=false
+  user: ${db_usr}
+  password: ${db_pwd}
+  initialPoolSize: 1
+  maxPoolSize: 1
+  preferredTestQuery: "select 1 from dual"
+  idleConnectionTestPeriod: 10
+  minPoolSize: 1
+  acquireIncrement: 1
+  maxIdleTime: 60
+
+opentracing.jaeger:
+  http-sender.url = http://localhost:14268/api/traces

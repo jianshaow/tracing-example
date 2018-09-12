@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -28,6 +27,7 @@
         <opentracing.version>0.31.0</opentracing.version>
         <opentracing-jdbc.version>0.0.7</opentracing-jdbc.version>
         <opentracing-spring-web.version>0.3.3</opentracing-spring-web.version>
+        <opentracing-spring-jaeger-web.version>0.2.1</opentracing-spring-jaeger-web.version>
         <spring-boot.version>1.5.15.RELEASE</spring-boot.version>
     </properties>
 
@@ -86,6 +86,11 @@
                 <groupId>io.opentracing.contrib</groupId>
                 <artifactId>opentracing-spring-web</artifactId>
                 <version>${opentracing-spring-web.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.opentracing.contrib</groupId>
+                <artifactId>opentracing-spring-jaeger-web-starter</artifactId>
+                <version>${opentracing-spring-jaeger-web.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.opentracing.contrib</groupId>
