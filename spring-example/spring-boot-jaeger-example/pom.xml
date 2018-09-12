@@ -15,7 +15,6 @@
 
     <properties>
         <servlet-api.version>3.1.0</servlet-api.version>
-        <mysql.version>8.0.12</mysql.version>
     </properties>
 
     <dependencies>
@@ -47,10 +46,6 @@
             <artifactId>opentracing-jdbc</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>io.opentracing.contrib</groupId>
-            <artifactId>opentracing-spring-web</artifactId>
-        </dependency>
         <dependency>
             <groupId>io.opentracing.contrib</groupId>
             <artifactId>opentracing-spring-jaeger-web-starter</artifactId>
@@ -88,6 +83,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -95,7 +94,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
             </plugin>
         </plugins>
     </build>

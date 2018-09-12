@@ -14,4 +14,6 @@ c3p0:
   maxIdleTime: 60
 
 opentracing.jaeger:
-  http-sender.url = http://localhost:14268/api/traces
+  http-sender.url: http://localhost:14268/api/traces
+
+management.security.enabled: false
