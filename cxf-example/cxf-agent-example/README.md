@@ -1,4 +1,7 @@
-# Tracing Example
+# CXF Agent Example
+
+Use opentracing agent (byteman) to inject tracing feature to CXF server and client.
+
 ```shell
 mvn clean install
 

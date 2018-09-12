@@ -1,4 +1,7 @@
-# Tracing Example
+# CXF Agent Lightweight Example
+
+Use opentracing agent (byteman) to intercept cxf client to create span. no-intrusive solution.
+
 ```shell
 mvn clean install
 
