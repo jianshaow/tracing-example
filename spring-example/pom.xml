@@ -26,6 +26,7 @@
         <jaeger.version>0.30.4</jaeger.version>
         <opentracing.version>0.31.0</opentracing.version>
         <opentracing-jdbc.version>0.0.7</opentracing-jdbc.version>
+        <opentracing-redis.version>0.0.15</opentracing-redis.version>
         <opentracing-spring-web.version>0.3.3</opentracing-spring-web.version>
         <opentracing-spring-jaeger-web.version>0.2.1</opentracing-spring-jaeger-web.version>
         <spring-boot.version>1.5.15.RELEASE</spring-boot.version>
@@ -96,6 +97,11 @@
                 <groupId>io.opentracing.contrib</groupId>
                 <artifactId>opentracing-jdbc</artifactId>
                 <version>${opentracing-jdbc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.opentracing.contrib</groupId>
+                <artifactId>opentracing-redis-redisson</artifactId>
+                <version>${opentracing-redis.version}</version>
             </dependency>
 
             <dependency>
