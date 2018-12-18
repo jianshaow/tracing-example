@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
-public class DatasourceConfig {
+public class DBConfig {
 
     @Bean(name = "dataSource")
     @ConfigurationProperties(prefix = "c3p0")
