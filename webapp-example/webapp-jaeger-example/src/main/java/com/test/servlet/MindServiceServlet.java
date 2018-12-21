@@ -4,8 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -18,11 +19,18 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import io.opentracing.contrib.redis.common.TracingConfiguration;
+import io.opentracing.contrib.redis.jedis.TracingJedis;
+import io.opentracing.util.GlobalTracer;
+import redis.clients.jedis.Jedis;
+
 public class MindServiceServlet extends HttpServlet {
 
     private static Logger logger = LoggerFactory.getLogger(MindServiceServlet.class);
 
     private static final long serialVersionUID = -7766401686496991505L;
+
+    private Jedis jedis = new TracingJedis(new TracingConfiguration.Builder(GlobalTracer.get()).build());
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -37,19 +45,32 @@ public class MindServiceServlet extends HttpServlet {
     }
 
     private void accessDB() {
-        DataSource ds = null;
-        try {
-            final InitialContext ctx = new InitialContext();
-            ds = (DataSource) ctx.lookup("jdbc/test.ds");
-            try (final Connection conn = ds.getConnection(); final Statement stmt = conn.createStatement()) {
-                stmt.executeQuery("select * from application");
-                stmt.close();
-                conn.close();
-            } catch (SQLException e) {
+        final Integer appId = 1;
+        String appName = jedis.get(appId.toString());
+        if (appName == null) {
+            DataSource ds = null;
+            try {
+                final InitialContext ctx = new InitialContext();
+                ds = (DataSource) ctx.lookup("jdbc/test.ds");
+                try (final Connection conn = ds.getConnection();
+                        final PreparedStatement stmt = conn
+                                .prepareStatement("select name from application where id = ?")) {
+                    stmt.setInt(1, appId);
+                    final ResultSet result = stmt.executeQuery();
+                    if (result.next()) {
+                        appName = result.getString(1);
+                    }
+                    stmt.close();
+                    conn.close();
+                } catch (SQLException e) {
+                    logger.error(e.getMessage(), e);
+                }
+            } catch (NamingException e) {
                 logger.error(e.getMessage(), e);
             }
-        } catch (NamingException e) {
-            logger.error(e.getMessage(), e);
+            if (appName != null) {
+                jedis.setex(appId.toString(), 10, appName);
+            }
         }
     }
 }

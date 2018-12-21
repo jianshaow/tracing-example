@@ -20,8 +20,10 @@
 
     <properties>
         <jaeger.version>0.30.4</jaeger.version>
+        <jedis.version>2.8.2</jedis.version>
         <opentracing.version>0.31.0</opentracing.version>
         <opentracing-jdbc.version>0.0.7</opentracing-jdbc.version>
+        <opentracing-redis.version>0.0.15</opentracing-redis.version>
         <opentracing-filter.version>0.1.1</opentracing-filter.version>
         <opentracing-httpclient.version>0.1.0</opentracing-httpclient.version>
     </properties>
@@ -59,6 +61,17 @@
                 <groupId>io.opentracing.contrib</groupId>
                 <artifactId>opentracing-apache-httpclient</artifactId>
                 <version>${opentracing-httpclient.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.opentracing.contrib</groupId>
+                <artifactId>opentracing-redis-jedis</artifactId>
+                <version>${opentracing-redis.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${jedis.version}</version>
             </dependency>
 
             <dependency>
