@@ -71,17 +71,17 @@
                     <dependency>
                         <groupId>com.mchange</groupId>
                         <artifactId>c3p0</artifactId>
-                        <version>0.9.5.2</version>
+                        <version>${c3p0.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>com.mchange</groupId>
                         <artifactId>mchange-commons-java</artifactId>
-                        <version>0.2.15</version>
+                        <version>${mchange-commons.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
-                        <version>8.0.12</version>
+                        <version>${mysql.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>io.opentracing.contrib</groupId>
