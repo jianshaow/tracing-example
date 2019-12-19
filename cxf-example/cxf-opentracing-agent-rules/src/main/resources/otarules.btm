@@ -4,7 +4,7 @@ METHOD create
 HELPER io.opentracing.contrib.agent.OpenTracingHelper
 AT ENTRY
 BIND
-  feature : org.apache.cxf.feature.Feature = new com.test.opentracing.cxf.ClientFeature(getTracer());
+  feature : org.apache.cxf.feature.Feature = new org.apache.cxf.tracing.opentracing.OpenTracingClientFeature(getTracer());
 IF TRUE
 DO
   $this.getFeatures().add(feature);
@@ -16,7 +16,7 @@ METHOD create
 HELPER io.opentracing.contrib.agent.OpenTracingHelper
 AT ENTRY
 BIND
-  feature : org.apache.cxf.feature.Feature = new com.test.opentracing.cxf.ServerFeature(getTracer());
+  feature : org.apache.cxf.feature.Feature = new org.apache.cxf.tracing.opentracing.OpenTracingFeature(getTracer());
 IF TRUE
 DO
   $this.getFeatures().add(feature);

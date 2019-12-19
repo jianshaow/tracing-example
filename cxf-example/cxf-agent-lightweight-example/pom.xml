@@ -6,7 +6,7 @@
         <groupId>com.test.tracing</groupId>
         <artifactId>cxf-example</artifactId>
         <relativePath>../</relativePath>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.2.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>cxf-agent-lightweight-example</artifactId>
@@ -15,12 +15,7 @@
     <name>${project.groupId}:${project.artifactId}</name>
 
     <properties>
-        <cxf.version>3.1.12</cxf.version>
-        <jaxrs-api.version>2.0.1</jaxrs-api.version>
-        <jaeger.version>0.30.4</jaeger.version>
-        <opentracing.version>0.31.0</opentracing.version>
-        <opentracing-jdbc.version>0.0.7</opentracing-jdbc.version>
-        <opentracing-filter.version>0.1.1</opentracing-filter.version>
+        <opentracing-filter.version>0.4.0</opentracing-filter.version>
     </properties>
 
     <dependencies>
@@ -32,7 +27,6 @@
         <dependency>
             <groupId>com.test.tracing</groupId>
             <artifactId>cxf-opentracing-agent-lightweight-rules</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
@@ -47,10 +41,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
@@ -87,17 +77,17 @@
                                 <artifactItem>
                                     <groupId>io.opentracing.contrib</groupId>
                                     <artifactId>opentracing-agent</artifactId>
-                                    <version>0.2.0</version>
+                                    <version>${opentracing-agent.version}</version>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>io.opentracing.contrib</groupId>
                                     <artifactId>opentracing-agent-rules-java-web-servlet-filter</artifactId>
-                                    <version>0.2.0</version>
+                                    <version>${opentracing-agent.version}</version>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>com.test.tracing</groupId>
                                     <artifactId>cxf-opentracing-agent-lightweight-rules</artifactId>
-                                    <version>0.0.1-SNAPSHOT</version>
+                                    <version>${project.version}</version>
                                 </artifactItem>
                             </artifactItems>
                             <outputDirectory>${project.build.directory}/agent</outputDirectory>
@@ -139,11 +129,6 @@
                         <groupId>io.jaegertracing</groupId>
                         <artifactId>jaeger-client</artifactId>
                         <version>${jaeger.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.test.tracing</groupId>
-                        <artifactId>cxf-opentracing-feature</artifactId>
-                        <version>0.0.1-SNAPSHOT</version>
                     </dependency>
                     <dependency>
                         <groupId>io.opentracing.contrib</groupId>

@@ -27,7 +27,7 @@ public class TracerConfig {
                 .registerInjector(Format.Builtin.HTTP_HEADERS, b3Codec)
                 .registerExtractor(Format.Builtin.HTTP_HEADERS, b3Codec).withReporter(reporter).withSampler(sampler)
                 .build();
-        GlobalTracer.register(tracer);
+        GlobalTracer.registerIfAbsent(tracer);
         return tracer;
     }
 

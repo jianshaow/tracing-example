@@ -6,21 +6,13 @@
         <groupId>com.test.tracing</groupId>
         <artifactId>cxf-example</artifactId>
         <relativePath>../</relativePath>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.2.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>cxf-agent-example</artifactId>
     <packaging>war</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
-
-    <properties>
-        <cxf.version>3.1.12</cxf.version>
-        <jaxrs-api.version>2.0.1</jaxrs-api.version>
-        <jaeger.version>0.30.4</jaeger.version>
-        <opentracing.version>0.31.0</opentracing.version>
-        <opentracing-jdbc.version>0.0.7</opentracing-jdbc.version>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -30,7 +22,6 @@
         <dependency>
             <groupId>com.test.tracing</groupId>
             <artifactId>cxf-opentracing-agent-rules</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
@@ -77,12 +68,12 @@
                                 <artifactItem>
                                     <groupId>io.opentracing.contrib</groupId>
                                     <artifactId>opentracing-agent</artifactId>
-                                    <version>0.2.0</version>
+                                    <version>${opentracing-agent.version}</version>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>com.test.tracing</groupId>
                                     <artifactId>cxf-opentracing-agent-rules</artifactId>
-                                    <version>0.0.1-SNAPSHOT</version>
+                                    <version>${project.version}</version>
                                 </artifactItem>
                             </artifactItems>
                             <outputDirectory>${project.build.directory}/agent</outputDirectory>
@@ -126,11 +117,6 @@
                         <version>${jaeger.version}</version>
                     </dependency>
                     <dependency>
-                        <groupId>com.test.tracing</groupId>
-                        <artifactId>cxf-opentracing-feature</artifactId>
-                        <version>0.0.1-SNAPSHOT</version>
-                    </dependency>
-                    <dependency>
                         <groupId>org.apache.cxf</groupId>
                         <artifactId>cxf-core</artifactId>
                         <version>${cxf.version}</version>
@@ -148,6 +134,11 @@
                     <dependency>
                         <groupId>org.apache.cxf</groupId>
                         <artifactId>cxf-rt-management</artifactId>
+                        <version>${cxf.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.cxf</groupId>
+                        <artifactId>cxf-integration-tracing-opentracing</artifactId>
                         <version>${cxf.version}</version>
                     </dependency>
                     <dependency>
