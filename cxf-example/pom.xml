@@ -16,7 +16,6 @@
 
     <properties>
         <opentracing.version>0.33.0</opentracing.version>
-        <opentracing-agent.version>0.4.0</opentracing-agent.version>
         <opentracing-jdbc.version>0.2.3</opentracing-jdbc.version>
         <jaeger.version>1.1.0</jaeger.version>
         <cxf.version>3.3.4</cxf.version>
@@ -28,6 +27,7 @@
         <module>cxf-zipkin-example</module>
         <module>cxf-jaeger-example</module>
         <module>cxf-opentracing-example</module>
+        <module>cxf-agent-utils</module>
         <module>cxf-agent-example</module>
         <module>cxf-agent-lightweight-example</module>
         <module>cxf-opentracing-agent-rules</module>

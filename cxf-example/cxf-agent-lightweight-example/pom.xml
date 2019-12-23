@@ -15,7 +15,11 @@
     <name>${project.groupId}:${project.artifactId}</name>
 
     <properties>
-        <opentracing-filter.version>0.4.0</opentracing-filter.version>
+        <opentracing.version>0.31.0</opentracing.version>
+        <opentracing-agent.version>0.4.0</opentracing-agent.version>
+        <opentracing-jdbc.version>0.0.12</opentracing-jdbc.version>
+        <opentracing-filter.version>0.2.3</opentracing-filter.version>
+        <jaeger.version>0.34.1</jaeger.version>
     </properties>
 
     <dependencies>
@@ -134,6 +138,11 @@
                         <groupId>io.opentracing.contrib</groupId>
                         <artifactId>opentracing-web-servlet-filter</artifactId>
                         <version>${opentracing-filter.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.test.tracing</groupId>
+                        <artifactId>cxf-agent-utils</artifactId>
+                        <version>${project.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>

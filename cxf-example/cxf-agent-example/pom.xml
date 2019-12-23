@@ -14,6 +14,14 @@
 
     <name>${project.groupId}:${project.artifactId}</name>
 
+    <properties>
+        <opentracing.version>0.31.0</opentracing.version>
+        <opentracing-agent.version>0.4.0</opentracing-agent.version>
+        <opentracing-jdbc.version>0.0.12</opentracing-jdbc.version>
+        <cxf-tracing.version>3.3.2</cxf-tracing.version>
+        <jaeger.version>0.34.1</jaeger.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.test.tracing</groupId>
@@ -139,7 +147,7 @@
                     <dependency>
                         <groupId>org.apache.cxf</groupId>
                         <artifactId>cxf-integration-tracing-opentracing</artifactId>
-                        <version>${cxf.version}</version>
+                        <version>${cxf-tracing.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>org.springframework</groupId>
