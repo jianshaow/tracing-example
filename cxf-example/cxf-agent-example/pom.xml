@@ -16,7 +16,7 @@
 	<name>${project.groupId}:${project.artifactId}</name>
 
 	<properties>
-		<specialagent.version>1.5.3</specialagent.version>
+		<specialagent.version>1.5.4</specialagent.version>
 	</properties>
 
 	<dependencies>
@@ -41,6 +41,12 @@
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-rs-client</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>jakarta.activation</groupId>
+					<artifactId>jakarta.activation-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
@@ -92,9 +98,8 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<configuration>
 					<stopKey>alpha</stopKey>
-					<stopPort>9099</stopPort>
-					<jvmArgs>-javaagent:target/agent/opentracing-specialagent-${specialagent.version}.jar</jvmArgs>
-					<systemPropertiesFile>etc/jaeger-tracer.properties</systemPropertiesFile>
+					<stopPort>8088</stopPort>
+					<jvmArgs>-javaagent:target/agent/opentracing-specialagent-${specialagent.version}.jar -Dsa.tracer=jaeger -Dsa.log.level=INFO -DJAEGER_SERVICE_NAME=echo-service -DJAEGER_SAMPLER_TYPE=const -DJAEGER_SAMPLER_PARAM=1 -Ddb_usr=appuser -Ddb_pwd=123456</jvmArgs>
 				</configuration>
 				<dependencies>
 					<dependency>
