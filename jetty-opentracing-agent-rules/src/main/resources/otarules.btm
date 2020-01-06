@@ -1,8 +1,0 @@
-RULE Load OpenTracing Agent Rules via Jetty Web Classloader
-CLASS org.eclipse.jetty.server.handler.ContextHandler
-METHOD startContext
-AT ENTRY
-IF TRUE
-DO
-  io.opentracing.contrib.agent.OpenTracingManager.loadRules($this.getClassLoader());
-ENDRULE
