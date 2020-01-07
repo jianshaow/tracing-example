@@ -19,6 +19,7 @@
         <module>spring-jaeger-example</module>
         <module>spring-agent-example</module>
         <module>spring-boot-jaeger-example</module>
+        <module>spring-boot-agent-example</module>
     </modules>
 
     <properties>
