@@ -1,4 +1,4 @@
-# Spring Boot Agent Example
+# Spring Agent Example
 ```shell
 mvn clean install
 
