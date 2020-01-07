@@ -16,6 +16,7 @@
 
     <properties>
         <servlet-api.version>3.1.0</servlet-api.version>
+        <specialagent.version>1.5.4</specialagent.version>
     </properties>
 
     <dependencies>
