@@ -16,6 +16,7 @@
 
     <modules>
         <module>webapp-jaeger-example</module>
+        <module>webapp-agent-example</module>
     </modules>
 
     <properties>
