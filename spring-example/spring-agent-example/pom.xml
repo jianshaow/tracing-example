@@ -15,6 +15,28 @@
 
     <name>${project.groupId}:${project.artifactId}</name>
 
+    <profiles>
+        <profile>
+            <id>windows</id>
+            <activation>
+                <os>
+                    <family>Windows</family>
+                </os>
+            </activation>
+            <properties>
+                <agent.args>-javaagent:target\\agent\\opentracing-specialagent-${specialagent.version}.jar</agent.args>
+            </properties>
+        </profile>
+        <profile>
+            <activation>
+                <activeByDefault></activeByDefault>
+            </activation>
+            <properties>
+                <agent.args>-javaagent:target/agent/opentracing-specialagent-${specialagent.version}.jar</agent.args>
+            </properties>
+        </profile>
+    </profiles>
+
     <dependencies>
         <dependency>
             <groupId>com.test.tracing</groupId>
@@ -82,7 +104,12 @@
                 <configuration>
                     <stopKey>alpha</stopKey>
                     <stopPort>8088</stopPort>
-                    <jvmArgs>-javaagent:target/agent/opentracing-specialagent-${specialagent.version}.jar -Dsa.tracer=jaeger -Dsa.log.level=INFO -DJAEGER_SERVICE_NAME=echo-service -DJAEGER_SAMPLER_TYPE=const -DJAEGER_SAMPLER_PARAM=1 -Ddb_usr=appuser -Ddb_pwd=123456</jvmArgs>
+                    <jvmArgs>${agent.args}
+                        -Dsa.tracer=jaeger -Dsa.log.level=INFO
+                        -DJAEGER_SERVICE_NAME=echo-service
+                        -DJAEGER_SAMPLER_TYPE=const
+                        -DJAEGER_SAMPLER_PARAM=1 -Ddb_usr=appuser
+                        -Ddb_pwd=123456</jvmArgs>
                 </configuration>
                 <dependencies>
                     <dependency>
