@@ -22,18 +22,6 @@
         <module>spring-boot-agent-example</module>
     </modules>
 
-    <properties>
-        <feign.version>10.7.0</feign.version>
-        <jaeger.version>1.1.0</jaeger.version>
-        <opentracing.version>0.33.0</opentracing.version>
-        <opentracing-jdbc.version>0.2.3</opentracing-jdbc.version>
-        <opentracing-feign.version>0.3.0</opentracing-feign.version>
-        <opentracing-redis.version>0.1.14</opentracing-redis.version>
-        <opentracing-spring-web.version>3.0.0</opentracing-spring-web.version>
-        <opentracing-spring-jaeger-web.version>2.0.3</opentracing-spring-jaeger-web.version>
-        <spring-boot.version>2.2.2.RELEASE</spring-boot.version>
-    </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>

@@ -15,10 +15,6 @@
 
     <name>${project.groupId}:${project.artifactId}</name>
 
-    <properties>
-        <specialagent.version>1.5.4</specialagent.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.test.tracing</groupId>

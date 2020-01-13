@@ -19,16 +19,6 @@
         <module>webapp-agent-example</module>
     </modules>
 
-    <properties>
-        <jaeger.version>1.1.0</jaeger.version>
-        <jedis.version>2.8.2</jedis.version>
-        <opentracing.version>0.33.0</opentracing.version>
-        <opentracing-jdbc.version>0.2.3</opentracing-jdbc.version>
-        <opentracing-redis.version>0.1.14</opentracing-redis.version>
-        <opentracing-filter.version> 0.4.0</opentracing-filter.version>
-        <opentracing-httpclient.version>0.2.0</opentracing-httpclient.version>
-    </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
