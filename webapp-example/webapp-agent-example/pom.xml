@@ -99,6 +99,7 @@
                         -javaagent:${agent.jar}
                         -Dsa.tracer=jaeger
                         -Dsa.log.level=INFO
+                        -Dsa.instrumentation.plugin.thread.disable=true
                         -DJAEGER_SERVICE_NAME=echo-service
                         -DJAEGER_SAMPLER_TYPE=const
                         -DJAEGER_SAMPLER_PARAM=1
