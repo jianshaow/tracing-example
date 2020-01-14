@@ -23,15 +23,15 @@
                 </os>
             </activation>
             <properties>
-                <agent.args>-javaagent:target\\agent\\opentracing-specialagent-${specialagent.version}.jar</agent.args>
+                <agent.jar>target\\agent\\opentracing-specialagent-${specialagent.version}.jar</agent.jar>
             </properties>
         </profile>
         <profile>
             <activation>
-                <activeByDefault></activeByDefault>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <agent.args>-javaagent:target/agent/opentracing-specialagent-${specialagent.version}.jar</agent.args>
+                <agent.jar>target/agent/opentracing-specialagent-${specialagent.version}.jar</agent.jar>
             </properties>
         </profile>
     </profiles>
@@ -112,8 +112,8 @@
                 <configuration>
                     <fork>true</fork>
                     <wait>60000</wait>
+                    <agents>${agent.jar}</agents>
                     <jvmArguments>
-                        ${agent.args}
                         -Dsa.tracer=jaeger
                         -Dsa.log.level=INFO
                         -DJAEGER_SERVICE_NAME=echo-service
