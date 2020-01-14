@@ -110,12 +110,18 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <jvmArguments>${agent.args}
-                        -Dsa.tracer=jaeger -Dsa.log.level=INFO
+                    <fork>true</fork>
+                    <wait>60000</wait>
+                    <jvmArguments>
+                        ${agent.args}
+                        -Dsa.tracer=jaeger
+                        -Dsa.log.level=INFO
                         -DJAEGER_SERVICE_NAME=echo-service
                         -DJAEGER_SAMPLER_TYPE=const
-                        -DJAEGER_SAMPLER_PARAM=1 -Ddb_usr=appuser
-                        -Ddb_pwd=123456</jvmArguments>
+                        -DJAEGER_SAMPLER_PARAM=1
+                        -Ddb_usr=appuser
+                        -Ddb_pwd=123456
+                    </jvmArguments>
                 </configuration>
             </plugin>
         </plugins>

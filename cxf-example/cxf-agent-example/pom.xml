@@ -121,13 +121,16 @@
                 <configuration>
                     <stopKey>alpha</stopKey>
                     <stopPort>8088</stopPort>
-                    <jvmArgs>${agent.args}
+                    <jvmArgs>
+                        ${agent.args}
                         -Dsa.tracer=jaeger
                         -Dsa.log.level=INFO
                         -DJAEGER_SERVICE_NAME=echo-service
                         -DJAEGER_SAMPLER_TYPE=const
-                        -DJAEGER_SAMPLER_PARAM=1 -Ddb_usr=appuser
-                        -Ddb_pwd=123456</jvmArgs>
+                        -DJAEGER_SAMPLER_PARAM=1
+                        -Ddb_usr=appuser
+                        -Ddb_pwd=123456
+                    </jvmArgs>
                 </configuration>
                 <dependencies>
                     <dependency>
