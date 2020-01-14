@@ -18,24 +18,38 @@
         </jaxrs:providers>
     </jaxrs:server>
 
-    <jaxrs-client:client id="auralServiceClient" address="http://localhost:8080/" serviceClass="com.test.tracing.AuralService"
-        threadSafe="true">
+    <jaxrs-client:client id="auralServiceClient" address="http://localhost:8080/"
+        serviceClass="com.test.tracing.AuralService" threadSafe="true">
         <jaxrs-client:providers>
             <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
         </jaxrs-client:providers>
+        <jaxrs-client:features>
+            <ref bean="tracingClientFeature" />
+        </jaxrs-client:features>
     </jaxrs-client:client>
 
-    <jaxrs-client:client id="mindServiceClient" address="http://localhost:8080/" serviceClass="com.test.tracing.MindService"
-        threadSafe="true">
+    <jaxrs-client:client id="mindServiceClient" address="http://localhost:8080/"
+        serviceClass="com.test.tracing.MindService" threadSafe="true">
         <jaxrs-client:providers>
             <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
         </jaxrs-client:providers>
+        <jaxrs-client:features>
+            <ref bean="tracingClientFeature" />
+        </jaxrs-client:features>
     </jaxrs-client:client>
 
-    <jaxrs-client:client id="speakServiceClient" address="http://localhost:8080/" serviceClass="com.test.tracing.SpeakService"
-        threadSafe="true">
+    <jaxrs-client:client id="speakServiceClient" address="http://localhost:8080/"
+        serviceClass="com.test.tracing.SpeakService" threadSafe="true">
         <jaxrs-client:providers>
             <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
         </jaxrs-client:providers>
+        <jaxrs-client:features>
+            <ref bean="tracingClientFeature" />
+        </jaxrs-client:features>
     </jaxrs-client:client>
+
+    <bean id="tracingClientFeature" class="org.apache.cxf.tracing.opentracing.OpenTracingClientFeature">
+        <constructor-arg ref="tracer" />
+    </bean>
+    <bean id="tracer" class="io.opentracing.util.GlobalTracer" factory-method="get" />
 </beans>
