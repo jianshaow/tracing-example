@@ -14,7 +14,7 @@
         <Arg>
             <New class="com.mchange.v2.c3p0.ComboPooledDataSource">
                 <Set name="driverClass">com.mysql.cj.jdbc.Driver</Set>
-                <Set name="jdbcUrl">jdbc:tracing:mysql://localhost:3306/mydb?traceWithActiveSpanOnly=true;useSSL=false</Set>
+                <Set name="jdbcUrl">jdbc:mysql://localhost:3306/mydb?useSSL=false</Set>
                 <Set name="user"><Ref id="db_usr" /></Set>
                 <Set name="password"><Ref id="db_pwd" /></Set>
                 <Set name="initialPoolSize">1</Set>
