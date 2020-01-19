@@ -123,6 +123,7 @@
                                 </artifactItem>
                             </artifactItems>
                             <outputDirectory>${project.build.directory}/agent</outputDirectory>
+                            <useBaseVersion>true</useBaseVersion>
                         </configuration>
                     </execution>
                 </executions>
