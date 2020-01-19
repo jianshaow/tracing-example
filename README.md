@@ -1,6 +1,29 @@
 # Tracing Example
 
-Research tracing solution on multiple scenarios, especially on legacy framework.
+Research tracing solution on multiple scenarios.
+
+## Prerequisite
+
+The exampls need following service:
+
+* Redis server
+
+* Mysql server
+
+Database information as below:
+
+Schema: mydb; User: appuser; Password: 123456;
+
+~~~sql
+CREATE TABLE `mydb`.`application` (
+  `id` INT NOT NULL,
+  `name` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+~~~
+
+* Jaeger server
+
+## Execution
 
 ```shell
 mvn clean install
