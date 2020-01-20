@@ -24,9 +24,4 @@
             <artifactId>opentracing-web-servlet-filter</artifactId>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-        </plugins>
-    </build>
 </project>
