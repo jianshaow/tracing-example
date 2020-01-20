@@ -137,16 +137,7 @@
                     <stopPort>8088</stopPort>
                     <jvmArgs>
                         -javaagent:${agent.jar}
-                        -Dsa.tracer=jaeger
-                        -Dsa.log.level=INFO
-                        -Dsa.instrumentation.plugin.thread.disable=true
-                        -Dsa.instrumentation.plugin.httpurlconnection.disable=true
-                        -Dsa.instrumentation.plugin.jdbc.withActiveSpanOnly=true
-                        -DJAEGER_SERVICE_NAME=echo-service
-                        -DJAEGER_SAMPLER_TYPE=const
-                        -DJAEGER_SAMPLER_PARAM=1
-                        -Ddb_usr=appuser
-                        -Ddb_pwd=123456
+                        -Dsa.config=etc/agent-config.properties
                     </jvmArgs>
                 </configuration>
                 <dependencies>

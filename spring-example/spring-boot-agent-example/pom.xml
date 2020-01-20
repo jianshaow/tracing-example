@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -115,15 +114,7 @@
                     <wait>60000</wait>
                     <agents>${agent.jar}</agents>
                     <jvmArguments>
-                        -Dsa.tracer=jaeger
-                        -Dsa.log.level=INFO
-                        -Dsa.instrumentation.plugin.thread.disable=true
-                        -Dsa.instrumentation.plugin.jdbc.withActiveSpanOnly=true
-                        -DJAEGER_SERVICE_NAME=echo-service
-                        -DJAEGER_SAMPLER_TYPE=const
-                        -DJAEGER_SAMPLER_PARAM=1
-                        -Ddb_usr=appuser
-                        -Ddb_pwd=123456
+                        -Dsa.config=etc/agent-config.properties
                     </jvmArguments>
                 </configuration>
             </plugin>
