@@ -24,6 +24,7 @@
             </activation>
             <properties>
                 <agent.jar>target\\agent\\opentracing-specialagent-${specialagent.version}.jar</agent.jar>
+                <instrumentation.jar>target\\agent\\cxf-${project.version}.jar</instrumentation.jar>
             </properties>
         </profile>
         <profile>
@@ -32,6 +33,7 @@
             </activation>
             <properties>
                 <agent.jar>target/agent/opentracing-specialagent-${specialagent.version}.jar</agent.jar>
+                <instrumentation.jar>target/agent/cxf-${project.version}.jar</instrumentation.jar>
             </properties>
         </profile>
     </profiles>
@@ -121,6 +123,11 @@
                                     <artifactId>opentracing-specialagent</artifactId>
                                     <version>${specialagent.version}</version>
                                 </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.test.tracing</groupId>
+                                    <artifactId>cxf</artifactId>
+                                    <version>${project.version}</version>
+                                </artifactItem>
                             </artifactItems>
                             <outputDirectory>${project.build.directory}/agent</outputDirectory>
                             <useBaseVersion>true</useBaseVersion>
@@ -138,6 +145,7 @@
                     <jvmArgs>
                         -javaagent:${agent.jar}
                         -Dsa.config=etc/agent-config.properties
+                        -Dsa.instrumentation.plugin.include=${instrumentation.jar}
                     </jvmArgs>
                 </configuration>
                 <dependencies>
