@@ -49,7 +49,17 @@ public abstract class ContextAgentIntercept extends ServletFilterAgentIntercept 
       return null;
     }
 
-    final TracingFilter tracingFilter = getFilter(context);
+    final TracingFilter tracingFilter = getFilter(context, false);
+    // If the tracingFilter instance is a TracingProxyFilter, then it was
+    // created with ServletFilterAgentIntercept#getProxyFilter. This should
+    // never happen, because ServletContext#addFilter happens first in the
+    // servlet lifecycle.
+    if (tracingFilter instanceof TracingProxyFilter) {
+      if (logger.isLoggable(Level.FINER))
+        logger.finer(">< ContextAgentIntercept#addFilter(" + AgentRuleUtil.getSimpleNameId(context) + "): tracingFilter instanceof TracingProxyFilter");
+
+      return null;
+    }
 
     if (logger.isLoggable(Level.FINER))
       logger.finer(">> ContextAgentIntercept#addFilter(" + AgentRuleUtil.getSimpleNameId(context) + "): ServletContext#addFilter(\"" + TRACING_FILTER_NAME + "\"," + AgentRuleUtil.getSimpleNameId(tracingFilter) + ")");
