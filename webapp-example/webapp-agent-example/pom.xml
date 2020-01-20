@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -25,6 +24,7 @@
             </activation>
             <properties>
                 <agent.jar>target\\agent\\opentracing-specialagent-${specialagent.version}.jar</agent.jar>
+                <instrumentation.jar>target\\agent\\filter-${project.version}.jar;target\\agent\\opentracing-web-servlet-filter-${opentracing-filter.version}.jar</instrumentation.jar>
             </properties>
         </profile>
         <profile>
@@ -33,6 +33,7 @@
             </activation>
             <properties>
                 <agent.jar>target/agent/opentracing-specialagent-${specialagent.version}.jar</agent.jar>
+                <instrumentation.jar>target/agent/filter-${project.version}.jar:target/agent/opentracing-web-servlet-filter-${opentracing-filter.version}.jar</instrumentation.jar>
             </properties>
         </profile>
     </profiles>
@@ -82,6 +83,16 @@
                                     <artifactId>opentracing-specialagent</artifactId>
                                     <version>${specialagent.version}</version>
                                 </artifactItem>
+                                <artifactItem>
+                                    <groupId>io.opentracing.contrib</groupId>
+                                    <artifactId>opentracing-web-servlet-filter</artifactId>
+                                    <version>${opentracing-filter.version}</version>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.test.tracing</groupId>
+                                    <artifactId>filter</artifactId>
+                                    <version>${project.version}</version>
+                                </artifactItem>
                             </artifactItems>
                             <outputDirectory>${project.build.directory}/agent</outputDirectory>
                             <useBaseVersion>true</useBaseVersion>
@@ -98,15 +109,8 @@
                     <stopPort>8088</stopPort>
                     <jvmArgs>
                         -javaagent:${agent.jar}
-                        -Dsa.tracer=jaeger
-                        -Dsa.log.level=INFO
-                        -Dsa.instrumentation.plugin.thread.disable=true
-                        -Dsa.instrumentation.plugin.jdbc.withActiveSpanOnly=true
-                        -DJAEGER_SERVICE_NAME=echo-service
-                        -DJAEGER_SAMPLER_TYPE=const
-                        -DJAEGER_SAMPLER_PARAM=1
-                        -Ddb_usr=appuser
-                        -Ddb_pwd=123456
+                        -Dsa.instrumentation.plugin.include=${instrumentation.jar}
+                        -Dsa.config=etc/agent-config.properties
                     </jvmArgs>
                 </configuration>
                 <dependencies>
