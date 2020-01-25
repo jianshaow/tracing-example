@@ -40,6 +40,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.test.tracing</groupId>
+            <artifactId>filter</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
         </dependency>

@@ -27,7 +27,7 @@
         <opentracing-spring-web.version>3.0.0</opentracing-spring-web.version>
         <opentracing-spring-jaeger-web.version>2.0.3</opentracing-spring-jaeger-web.version>
         <opentracing-jdbc.version>0.2.3</opentracing-jdbc.version>
-        <specialagent.version>1.5.6-SNAPSHOT</specialagent.version>
+        <specialagent.version>1.5.6</specialagent.version>
         <brave.version>5.9.1</brave.version>
         <brave-opentracing.version>0.35.0</brave-opentracing.version>
         <zipkin-reporter.version>2.12.0</zipkin-reporter.version>
@@ -53,6 +53,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
                     <configuration>
                         <source>1.8</source>
                         <target>1.8</target>
@@ -77,6 +78,17 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.test.tracing</groupId>
+                <artifactId>filter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.test.tracing</groupId>
+                <artifactId>cxf</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>io.jaegertracing</groupId>
                 <artifactId>jaeger-client</artifactId>
@@ -126,6 +138,11 @@
                 <version>${spring.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-core</artifactId>
+                <version>${cxf.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-rt-frontend-jaxrs</artifactId>

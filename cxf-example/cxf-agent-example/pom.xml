@@ -41,6 +41,10 @@
     <dependencies>
         <dependency>
             <groupId>com.test.tracing</groupId>
+            <artifactId>cxf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.test.tracing</groupId>
             <artifactId>cxf-echo-service</artifactId>
         </dependency>
 
