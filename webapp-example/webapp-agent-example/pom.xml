@@ -42,6 +42,7 @@
         <dependency>
             <groupId>com.test.tracing</groupId>
             <artifactId>filter</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
