@@ -36,7 +36,7 @@ public class CxfAgentRule extends AgentRule {
 	public static class CxfClientAdvice {
 		@Advice.OnMethodEnter
 		public static void enter(final @Advice.Origin String origin, final @Advice.This Object thiz) {
-			if (isEnabled(origin)) {
+			if (isEnabled("CxfAgentRule", origin)) {
 				CxfAgentIntercept.addClientTracingFeature(thiz);
 			}
 		}
@@ -45,7 +45,7 @@ public class CxfAgentRule extends AgentRule {
 	public static class CxfServerAdvice {
 		@Advice.OnMethodEnter
 		public static void enter(final @Advice.Origin String origin, final @Advice.This Object thiz) {
-			if (isEnabled(origin)) {
+			if (isEnabled("CxfAgentRule", origin)) {
 				CxfAgentIntercept.addServerTracingFeauture(thiz);
 			}
 		}

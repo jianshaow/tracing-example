@@ -15,14 +15,11 @@
 
 package com.test.tracing.specialagent.rule.filter;
 
-import java.util.Collections;
 import java.util.Enumeration;
 
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-
-import com.test.tracing.span.CustomizedSpanDecorator;
 
 import io.opentracing.Tracer;
 import io.opentracing.contrib.web.servlet.filter.TracingFilter;
@@ -31,7 +28,7 @@ public class TracingProxyFilter extends TracingFilter implements FilterConfig {
   private final ServletContext context;
 
   public TracingProxyFilter(final Tracer tracer, final ServletContext context) throws ServletException {
-    super(tracer, Collections.singletonList(new CustomizedSpanDecorator()), null);
+    super(tracer);
     this.context = context;
     init(this);
   }

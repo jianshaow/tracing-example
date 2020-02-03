@@ -34,7 +34,7 @@ import io.opentracing.contrib.web.servlet.filter.TracingFilter;
 import io.opentracing.util.GlobalTracer;
 
 public abstract class ServletFilterAgentIntercept {
-  public static final Logger logger = Logger.getLogger(ServletAgentIntercept.class);
+  public static final Logger logger = Logger.getLogger(ServletFilterAgentIntercept.class);
   public static final Map<Object,ServletContext> filterOrServletToServletContext = new HashMap<>();
   public static final Map<ServletRequest,Boolean> servletRequestToState = new HashMap<>();
   public static final Map<ServletContext,TracingFilter> servletContextToFilter = new ConcurrentHashMap<>();

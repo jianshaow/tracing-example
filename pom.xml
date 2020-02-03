@@ -19,6 +19,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <specialagent.version>1.5.7</specialagent.version>
         <opentracing.version>0.33.0</opentracing.version>
         <opentracing-redis.version>0.1.14</opentracing-redis.version>
         <opentracing-filter.version> 0.4.0</opentracing-filter.version>
@@ -27,7 +28,6 @@
         <opentracing-spring-web.version>3.0.0</opentracing-spring-web.version>
         <opentracing-spring-jaeger-web.version>2.0.3</opentracing-spring-jaeger-web.version>
         <opentracing-jdbc.version>0.2.3</opentracing-jdbc.version>
-        <specialagent.version>1.5.6</specialagent.version>
         <brave.version>5.9.1</brave.version>
         <brave-opentracing.version>0.35.0</brave-opentracing.version>
         <zipkin-reporter.version>2.12.0</zipkin-reporter.version>
@@ -35,6 +35,7 @@
         <spring-boot.version>2.2.2.RELEASE</spring-boot.version>
         <jaeger.version>1.1.0</jaeger.version>
         <cxf.version>3.3.4</cxf.version>
+        <jetty.version>9.4.24.v20191120</jetty.version>
         <feign.version>10.7.0</feign.version>
         <jackson.version>2.9.1</jackson.version>
         <httpclient.version>4.5.10</httpclient.version>
@@ -67,7 +68,7 @@
                 <plugin>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
-                    <version>9.4.24.v20191120</version>
+                    <version>${jetty.version}</version>
                     <configuration>
                         <jettyXml>etc/jetty.xml</jettyXml>
                     </configuration>
@@ -160,6 +161,11 @@
             </dependency>
             <dependency>
                 <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-rt-management</artifactId>
+                <version>${cxf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-integration-tracing-opentracing</artifactId>
                 <version>${cxf.version}</version>
             </dependency>
@@ -168,6 +174,18 @@
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
                 <version>${httpclient.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-server</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-servlet</artifactId>
+                <version>${jetty.version}</version>
             </dependency>
 
             <dependency>
