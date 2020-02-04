@@ -19,7 +19,7 @@ import io.opentracing.mock.MockTracer;
 public class CxfTest {
 
 	@BeforeClass
-	public static void beforeClass(MockTracer tracer) {
+	public static void beforeClass(final MockTracer tracer) {
 		Thread.currentThread().setContextClassLoader(CxfTest.class.getClassLoader());
 	}
 
