@@ -9,12 +9,12 @@ import io.opentracing.util.GlobalTracer;
 
 public class CxfAgentIntercept {
 
-	public static void addClientTracingFeature(final Object thiz) {
+	public static void addRsClientTracingFeature(final Object thiz) {
 		final JAXRSClientFactoryBean factoryBean = (JAXRSClientFactoryBean) thiz;
 		factoryBean.getFeatures().add(new OpenTracingClientFeature(GlobalTracer.get()));
 	}
 
-	public static void addServerTracingFeauture(final Object thiz) {
+	public static void addRsServerTracingFeauture(final Object thiz) {
 		final JAXRSServerFactoryBean factoryBean = (JAXRSServerFactoryBean) thiz;
 		factoryBean.getFeatures().add(new OpenTracingFeature(GlobalTracer.get()));
 	}

@@ -1,1 +1,1 @@
-com.test.tracing.specialagent.rule.cxf.CxfAgentRule
+com.test.tracing.specialagent.rule.cxf.CxfRsAgentRule
