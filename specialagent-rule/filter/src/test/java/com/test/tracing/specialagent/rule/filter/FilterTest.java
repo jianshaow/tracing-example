@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
-import org.eclipse.jetty.servlet.ServletHandler;
+import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -34,14 +34,14 @@ public class FilterTest {
 	private static int serverPort;
 	private static Server server;
 
-	@BeforeClass	
+	@BeforeClass
 	public static void beforeClass(final MockTracer tracer) throws Exception {
 		server = new Server(0);
-		
-		final ServletHandler servletHandler = new ServletHandler();
-		servletHandler.addServletWithMapping(MockServlet.class, "/hello");
+
+		final ServletContextHandler servletHandler = new ServletContextHandler();
+		servletHandler.addServlet(MockServlet.class, "/hello");
 		server.setHandler(servletHandler);
-		
+
 		server.start();
 		serverPort = ((ServerConnector) server.getConnectors()[0]).getLocalPort();
 	}

@@ -1,2 +1,1 @@
 com.test.tracing.specialagent.rule.filter.ServletContextAgentRule
-com.test.tracing.specialagent.rule.filter.FilterAgentRule
