@@ -46,7 +46,8 @@ public class CxfTest {
 
 		assertEquals(msg, response);
 		assertEquals(2, tracer.finishedSpans().size());
-		
+		assertEquals("we tag what we want", tracer.finishedSpans().get(0).tags().get("customized.tag"));
+
 		final WebClient client = WebClient.create(BASE_URI);
 		final String result = client.post(msg, String.class);
 
