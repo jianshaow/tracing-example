@@ -23,6 +23,7 @@
             </activation>
             <properties>
                 <agent.jar>target\\agent\\opentracing-specialagent-${specialagent.version}.jar</agent.jar>
+                <instrumentation.jar>target\\agent\\filter-${project.version}.jar;target\\agent\\opentracing-web-servlet-filter-${opentracing-filter.version}.jar</instrumentation.jar>
             </properties>
         </profile>
         <profile>
@@ -31,6 +32,7 @@
             </activation>
             <properties>
                 <agent.jar>target/agent/opentracing-specialagent-${specialagent.version}.jar</agent.jar>
+                <instrumentation.jar>target/agent/filter-${project.version}.jar:target/agent/opentracing-web-servlet-filter-${opentracing-filter.version}.jar</instrumentation.jar>
             </properties>
         </profile>
     </profiles>
@@ -98,6 +100,16 @@
                                     <artifactId>opentracing-specialagent</artifactId>
                                     <version>${specialagent.version}</version>
                                 </artifactItem>
+                                <artifactItem>
+                                    <groupId>io.opentracing.contrib</groupId>
+                                    <artifactId>opentracing-web-servlet-filter</artifactId>
+                                    <version>${opentracing-filter.version}</version>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.test.tracing</groupId>
+                                    <artifactId>filter</artifactId>
+                                    <version>${project.version}</version>
+                                </artifactItem>
                             </artifactItems>
                             <outputDirectory>${project.build.directory}/agent</outputDirectory>
                             <useBaseVersion>true</useBaseVersion>
@@ -114,6 +126,7 @@
                     <wait>60000</wait>
                     <agents>${agent.jar}</agents>
                     <jvmArguments>
+                        -Dsa.instrumentation.plugin.include=${instrumentation.jar}
                         -Dsa.config=etc/agent-config.properties
                     </jvmArguments>
                 </configuration>
