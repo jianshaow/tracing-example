@@ -20,7 +20,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import io.opentracing.contrib.specialagent.AgentRunner;
-import io.opentracing.contrib.specialagent.Level;
 import io.opentracing.mock.MockSpan;
 import io.opentracing.mock.MockTracer;
 import okhttp3.OkHttpClient;
@@ -28,14 +27,14 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 @RunWith(AgentRunner.class)
-@AgentRunner.Config(disable = "*", log=Level.FINEST)
+@AgentRunner.Config(disable = "*")
 public class FilterTest {
 
 	// jetty starts on random port
 	private static int serverPort;
 	private static Server server;
 
-	@BeforeClass
+	@BeforeClass	
 	public static void beforeClass(final MockTracer tracer) throws Exception {
 		server = new Server(0);
 		
