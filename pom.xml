@@ -19,10 +19,10 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <specialagent.version>1.5.7</specialagent.version>
+        <specialagent.version>1.5.8-SNAPSHOT</specialagent.version>
         <opentracing.version>0.33.0</opentracing.version>
         <opentracing-redis.version>0.1.14</opentracing-redis.version>
-        <opentracing-filter.version> 0.4.0</opentracing-filter.version>
+        <opentracing-filter.version> 0.4.1</opentracing-filter.version>
         <opentracing-httpclient.version>0.2.0</opentracing-httpclient.version>
         <opentracing-feign.version>0.3.0</opentracing-feign.version>
         <opentracing-spring-web.version>3.0.0</opentracing-spring-web.version>
@@ -87,6 +87,11 @@
             <dependency>
                 <groupId>com.test.tracing</groupId>
                 <artifactId>cxf</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.test.tracing</groupId>
+                <artifactId>servlet-span-decorator</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
