@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -25,6 +24,7 @@
             </activation>
             <properties>
                 <agent.jar>target\\agent\\opentracing-specialagent-${specialagent.version}.jar</agent.jar>
+                <instrumentation.jar>target\\agent\\servlet-span-decorator-${project.version}.jar</instrumentation.jar>
             </properties>
         </profile>
         <profile>
@@ -33,11 +33,17 @@
             </activation>
             <properties>
                 <agent.jar>target/agent/opentracing-specialagent-${specialagent.version}.jar</agent.jar>
+                <instrumentation.jar>target/agent/servlet-span-decorator-${project.version}.jar</instrumentation.jar>
             </properties>
         </profile>
     </profiles>
 
     <dependencies>
+        <dependency>
+            <groupId>com.test.tracing</groupId>
+            <artifactId>servlet-span-decorator</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>com.test.tracing</groupId>
             <artifactId>spring-echo-service</artifactId>
@@ -91,6 +97,11 @@
                                     <artifactId>opentracing-specialagent</artifactId>
                                     <version>${specialagent.version}</version>
                                 </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.test.tracing</groupId>
+                                    <artifactId>servlet-span-decorator</artifactId>
+                                    <version>${project.version}</version>
+                                </artifactItem>
                             </artifactItems>
                             <outputDirectory>${project.build.directory}/agent</outputDirectory>
                             <useBaseVersion>true</useBaseVersion>
@@ -106,7 +117,11 @@
                     <stopKey>alpha</stopKey>
                     <stopPort>8088</stopPort>
                     <jvmArgs>
+                        <!--
+                        -agentlib:jdwp=transport=dt_socket,server=y,address=8000
+                         -->
                         -javaagent:${agent.jar}
+                        -Dsa.instrumentation.plugin.include=${instrumentation.jar}
                         -Dsa.config=etc/agent-config.properties
                     </jvmArgs>
                 </configuration>
