@@ -4,7 +4,7 @@
 
     <parent>
         <groupId>com.test.tracing</groupId>
-        <artifactId>specialagent-rule</artifactId>
+        <artifactId>tracing-example</artifactId>
         <relativePath>../</relativePath>
         <version>0.2.0-SNAPSHOT</version>
     </parent>

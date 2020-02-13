@@ -21,7 +21,6 @@
     <modules>
         <module>filter</module>
         <module>cxf</module>
-        <module>servlet-span-decorator</module>
     </modules>
 
     <dependencies>

@@ -14,6 +14,7 @@
         <module>cxf-example</module>
         <module>webapp-example</module>
         <module>spring-example</module>
+        <module>servlet-span-decorator</module>
         <module>specialagent-rule</module>
     </modules>
 

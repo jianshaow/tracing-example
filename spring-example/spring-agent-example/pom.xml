@@ -24,7 +24,7 @@
             </activation>
             <properties>
                 <agent.jar>target\\agent\\opentracing-specialagent-${specialagent.version}.jar</agent.jar>
-                <instrumentation.jar>target\\agent\\servlet-span-decorator-${project.version}.jar</instrumentation.jar>
+                <spen-decorator.jar>${project.build.directory}\\agent\\servlet-span-decorator-${project.version}.jar</spen-decorator.jar>
             </properties>
         </profile>
         <profile>
@@ -33,7 +33,7 @@
             </activation>
             <properties>
                 <agent.jar>target/agent/opentracing-specialagent-${specialagent.version}.jar</agent.jar>
-                <instrumentation.jar>target/agent/servlet-span-decorator-${project.version}.jar</instrumentation.jar>
+                <spen-decorator.jar>${project.build.directory}/agent/servlet-span-decorator-${project.version}.jar</spen-decorator.jar>
             </properties>
         </profile>
     </profiles>
@@ -117,11 +117,8 @@
                     <stopKey>alpha</stopKey>
                     <stopPort>8088</stopPort>
                     <jvmArgs>
-                        <!--
-                        -agentlib:jdwp=transport=dt_socket,server=y,address=8000
-                         -->
                         -javaagent:${agent.jar}
-                        -Dsa.instrumentation.plugin.include=${instrumentation.jar}
+                        -Dsa.instrumentation.plugin.servlet.spanDecorators.jars=${spen-decorator.jar}
                         -Dsa.config=etc/agent-config.properties
                     </jvmArgs>
                 </configuration>
