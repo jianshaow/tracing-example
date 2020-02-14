@@ -35,6 +35,7 @@ public class EchoServiceServlet extends HttpServlet {
             logger.info("be requested to echo a message: {}", msg);
             String result = this.callAuralService(msg);
             result = this.callMindService(result);
+            result = this.callSpeakService(result);
             out.println(result);
             logger.info("echo back the result: {}", result);
             in.close();
@@ -48,6 +49,10 @@ public class EchoServiceServlet extends HttpServlet {
 
     private String callMindService(String msg) throws ClientProtocolException, IOException {
         return call(msg, "http://localhost:8080/mind");
+    }
+    
+    private String callSpeakService(String msg) throws ClientProtocolException, IOException {
+    	return call(msg, "http://localhost:8080/speak");
     }
 
     private String call(String msg, final String uri)

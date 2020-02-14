@@ -33,4 +33,14 @@
         <servlet-name>MindServiceServlet</servlet-name>
         <url-pattern>/mind</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SpeakServiceServlet</servlet-name>
+        <servlet-class>com.test.servlet.SpeakServiceServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SpeakServiceServlet</servlet-name>
+        <url-pattern>/speak</url-pattern>
+    </servlet-mapping>
 </web-app>

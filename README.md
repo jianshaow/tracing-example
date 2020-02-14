@@ -18,7 +18,21 @@ Schema: mydb; User: appuser; Password: 123456;
 CREATE TABLE `mydb`.`application` (
   `id` INT NOT NULL,
   `name` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`));
+  PRIMARY KEY (`id`)
+);
+~~~
+
+* Cassandra server
+Database information as below:
+
+Keyspace: mydb;
+
+~~~cql
+CREATE TABLE application (
+   id int,
+   name text,
+   PRIMARY KEY (id)
+);
 ~~~
 
 * Jaeger server

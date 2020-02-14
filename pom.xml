@@ -47,6 +47,7 @@
         <redisson.version>3.11.2</redisson.version>
         <mchange-commons.version>0.2.19</mchange-commons.version>
         <mysql.version>8.0.12</mysql.version>
+        <cassandra-driver.version>3.7.2</cassandra-driver.version>
     </properties>
 
     <build>
@@ -182,7 +183,6 @@
                 <version>${httpclient.version}</version>
             </dependency>
 
-
             <dependency>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-server</artifactId>
@@ -215,6 +215,12 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.datastax.cassandra</groupId>
+                <artifactId>cassandra-driver-core</artifactId>
+                <version>${cassandra-driver.version}</version>
             </dependency>
 
             <dependency>
