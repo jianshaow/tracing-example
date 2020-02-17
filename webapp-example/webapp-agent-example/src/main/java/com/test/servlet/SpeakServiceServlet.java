@@ -45,6 +45,6 @@ public class SpeakServiceServlet extends HttpServlet {
 	}
 
 	private void accessDB() {
-		session.execute("select * from application limit 1");
+		session.execute("select name from application where id = ?", 1);
 	}
 }
