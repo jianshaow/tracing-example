@@ -20,7 +20,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <specialagent.version>1.5.8-SNAPSHOT</specialagent.version>
+        <specialagent.version>1.5.8</specialagent.version>
         <opentracing.version>0.33.0</opentracing.version>
         <opentracing-redis.version>0.1.14</opentracing-redis.version>
         <opentracing-filter.version> 0.4.1</opentracing-filter.version>
