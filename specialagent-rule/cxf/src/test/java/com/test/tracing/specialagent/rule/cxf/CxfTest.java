@@ -2,12 +2,17 @@ package com.test.tracing.specialagent.rule.cxf;
 
 import static org.junit.Assert.assertEquals;
 
+import javax.jws.WebService;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
+import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.client.JAXRSClientFactoryBean;
 import org.apache.cxf.jaxrs.client.WebClient;
+import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
+import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,16 +30,21 @@ public class CxfTest {
 	public static void beforeClass(final MockTracer tracer) {
 		Thread.currentThread().setContextClassLoader(CxfTest.class.getClassLoader());
 	}
+	
+	@Before
+	public void before(final MockTracer tracer) {
+		tracer.reset();
+	}
 
 	@Test
-	public void test(final MockTracer tracer) {
+	public void testRs(final MockTracer tracer) {
 		final String msg = "hello";
 
 		// prepare server
 		final JAXRSServerFactoryBean serverFactory = new JAXRSServerFactoryBean();
 		serverFactory.setAddress(BASE_URI);
 		serverFactory.setServiceBean(new EchoImpl());
-		serverFactory.create();
+		final Server server = serverFactory.create();
 
 		// prepare client
 		final JAXRSClientFactoryBean clientFactory = new JAXRSClientFactoryBean();
@@ -53,9 +63,38 @@ public class CxfTest {
 
 		assertEquals(msg, result);
 		assertEquals(4, tracer.finishedSpans().size());
+
+		server.destroy();
+	}
+
+	@Test
+	public void testWs(final MockTracer tracer) {
+		final String msg = "hello";
+		
+		// prepare server
+		JaxWsServerFactoryBean serverFactory = new JaxWsServerFactoryBean();
+		serverFactory.setServiceClass(Echo.class);
+		serverFactory.setAddress(BASE_URI);
+		serverFactory.setServiceBean(new EchoImpl());
+		final Server server = serverFactory.create();
+
+		// prepare client
+		final JaxWsProxyFactoryBean  clientFactory = new JaxWsProxyFactoryBean();
+		clientFactory.setServiceClass(Echo.class);
+		clientFactory.setAddress(BASE_URI);
+		final Echo echo = (Echo) clientFactory.create();
+		
+		final String response = echo.echo(msg);
+
+		assertEquals(msg, response);
+		assertEquals(2, tracer.finishedSpans().size());
+		assertEquals("we tag what we want", tracer.finishedSpans().get(0).tags().get("customized.tag"));
+
+		server.destroy();
 	}
 
 	@Path("/")
+	@WebService
 	public static interface Echo {
 		@POST
 		String echo(String msg);

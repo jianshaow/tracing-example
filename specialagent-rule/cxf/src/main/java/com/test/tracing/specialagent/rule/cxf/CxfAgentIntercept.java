@@ -1,7 +1,6 @@
 package com.test.tracing.specialagent.rule.cxf;
 
-import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
-import org.apache.cxf.jaxrs.client.JAXRSClientFactoryBean;
+import org.apache.cxf.endpoint.AbstractEndpointFactory;
 import org.apache.cxf.tracing.opentracing.OpenTracingClientFeature;
 import org.apache.cxf.tracing.opentracing.OpenTracingFeature;
 
@@ -12,15 +11,15 @@ import io.opentracing.util.GlobalTracer;
 
 public class CxfAgentIntercept {
 
-	public static void addRsClientTracingFeature(final Object thiz) {
-		final JAXRSClientFactoryBean factoryBean = (JAXRSClientFactoryBean) thiz;
-		factoryBean.getFeatures().add(new OpenTracingClientFeature(GlobalTracer.get()));
-		factoryBean.getInInterceptors().add(new TaggingClientInterceptor());
+	public static void addClientTracingFeature(final Object thiz) {
+		final AbstractEndpointFactory factory = (AbstractEndpointFactory) thiz;
+		factory.getFeatures().add(new OpenTracingClientFeature(GlobalTracer.get()));
+		factory.getInInterceptors().add(new TaggingClientInterceptor());
 	}
 
-	public static void addRsServerTracingFeauture(final Object thiz) {
-		final JAXRSServerFactoryBean factoryBean = (JAXRSServerFactoryBean) thiz;
-		factoryBean.getFeatures().add(new OpenTracingFeature(GlobalTracer.get()));
-		factoryBean.getOutInterceptors().add(new TaggingServerInterceptor());
+	public static void addServerTracingFeauture(final Object thiz) {
+		final AbstractEndpointFactory factory = (AbstractEndpointFactory) thiz;
+		factory.getFeatures().add(new OpenTracingFeature(GlobalTracer.get()));
+		factory.getOutInterceptors().add(new TaggingServerInterceptor());
 	}
 }
