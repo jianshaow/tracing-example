@@ -24,7 +24,7 @@
             </activation>
             <properties>
                 <agent.jar>target\\agent\\opentracing-specialagent-${specialagent.version}.jar</agent.jar>
-                <instrumentation.jar>target\\agent\\cxf-${project.version}.jar;target\\agent\\cxf-integration-tracing-opentracing-${cxf.version}.jar</instrumentation.jar>
+                <instrumentation.jar>target\\agent\\cxf-span-${project.version}.jar</instrumentation.jar>
             </properties>
         </profile>
         <profile>
@@ -33,7 +33,7 @@
             </activation>
             <properties>
                 <agent.jar>target/agent/opentracing-specialagent-${specialagent.version}.jar</agent.jar>
-                <instrumentation.jar>target/agent/cxf-${project.version}.jar:target/agent/cxf-integration-tracing-opentracing-${cxf.version}.jar</instrumentation.jar>
+                <instrumentation.jar>target/agent/cxf-span-${project.version}.jar</instrumentation.jar>
             </properties>
         </profile>
     </profiles>
@@ -121,7 +121,7 @@
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>com.test.tracing</groupId>
-                                    <artifactId>cxf</artifactId>
+                                    <artifactId>cxf-span</artifactId>
                                     <version>${project.version}</version>
                                 </artifactItem>
                             </artifactItems>
