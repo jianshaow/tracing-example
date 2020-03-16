@@ -88,7 +88,7 @@
             </dependency>
             <dependency>
                 <groupId>com.test.tracing</groupId>
-                <artifactId>cxf</artifactId>
+                <artifactId>cxf-span</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

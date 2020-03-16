@@ -41,7 +41,7 @@
     <dependencies>
         <dependency>
             <groupId>com.test.tracing</groupId>
-            <artifactId>cxf</artifactId>
+            <artifactId>cxf-span</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
