@@ -115,11 +115,6 @@
                                     <version>${specialagent.version}</version>
                                 </artifactItem>
                                 <artifactItem>
-                                    <groupId>org.apache.cxf</groupId>
-                                    <artifactId>cxf-integration-tracing-opentracing</artifactId>
-                                    <version>${cxf.version}</version>
-                                </artifactItem>
-                                <artifactItem>
                                     <groupId>com.test.tracing</groupId>
                                     <artifactId>cxf-span</artifactId>
                                     <version>${project.version}</version>

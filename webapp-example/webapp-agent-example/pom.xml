@@ -24,7 +24,6 @@
             </activation>
             <properties>
                 <agent.jar>target\\agent\\opentracing-specialagent-${specialagent.version}.jar</agent.jar>
-                <instrumentation.jar>target\\agent\\filter-${project.version}.jar;target\\agent\\opentracing-web-servlet-filter-${opentracing-filter.version}.jar</instrumentation.jar>
             </properties>
         </profile>
         <profile>
@@ -33,18 +32,11 @@
             </activation>
             <properties>
                 <agent.jar>target/agent/opentracing-specialagent-${specialagent.version}.jar</agent.jar>
-                <instrumentation.jar>target/agent/filter-${project.version}.jar:target/agent/opentracing-web-servlet-filter-${opentracing-filter.version}.jar</instrumentation.jar>
             </properties>
         </profile>
     </profiles>
 
     <dependencies>
-        <dependency>
-            <groupId>com.test.tracing</groupId>
-            <artifactId>filter</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -94,16 +86,6 @@
                                     <artifactId>opentracing-specialagent</artifactId>
                                     <version>${specialagent.version}</version>
                                 </artifactItem>
-                                <artifactItem>
-                                    <groupId>io.opentracing.contrib</groupId>
-                                    <artifactId>opentracing-web-servlet-filter</artifactId>
-                                    <version>${opentracing-filter.version}</version>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>com.test.tracing</groupId>
-                                    <artifactId>filter</artifactId>
-                                    <version>${project.version}</version>
-                                </artifactItem>
                             </artifactItems>
                             <outputDirectory>${project.build.directory}/agent</outputDirectory>
                             <useBaseVersion>true</useBaseVersion>
@@ -120,7 +102,6 @@
                     <stopPort>8088</stopPort>
                     <jvmArgs>
                         -javaagent:${agent.jar}
-                        -Dsa.instrumentation.plugin.include=${instrumentation.jar}
                         -Dsa.config=etc/agent-config.properties
                     </jvmArgs>
                 </configuration>
