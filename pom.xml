@@ -14,9 +14,8 @@
     <module>cxf-example</module>
     <module>webapp-example</module>
     <module>spring-example</module>
-    <module>cxf-span-interceptor</module>
-    <module>servlet-span-decorator</module>
     <module>specialagent-rule</module>
+    <module>span-decorator</module>
   </modules>
 
   <properties>
@@ -100,6 +99,16 @@
       <dependency>
         <groupId>com.test.tracing</groupId>
         <artifactId>servlet-span-decorator</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>hc-span-decorator-api</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>hc-span-decorator</artifactId>
         <version>${project.version}</version>
       </dependency>
 
@@ -249,17 +258,4 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-
-  <repositories>
-    <repository>
-      <id>sonatype</id>
-      <url>http://oss.sonatype.org/content/repositories/releases</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
 </project>

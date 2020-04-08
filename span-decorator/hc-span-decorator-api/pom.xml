@@ -4,23 +4,28 @@
 
   <parent>
     <groupId>com.test.tracing</groupId>
-    <artifactId>tracing-example</artifactId>
+    <artifactId>span-decorator</artifactId>
     <relativePath>../</relativePath>
     <version>0.2.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>cxf-span-interceptor</artifactId>
+  <artifactId>hc-span-decorator-api</artifactId>
 
   <name>${project.groupId}:${project.artifactId}</name>
 
   <dependencies>
     <dependency>
-      <groupId>org.apache.cxf</groupId>
-      <artifactId>cxf-integration-tracing-opentracing</artifactId>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.cxf</groupId>
-      <artifactId>cxf-rt-management</artifactId>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.opentracing</groupId>
+      <artifactId>opentracing-api</artifactId>
     </dependency>
   </dependencies>
+
 </project>
