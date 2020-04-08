@@ -17,8 +17,6 @@ package com.test.tracing.specialagent.rule.filter;
 
 import static net.bytebuddy.matcher.ElementMatchers.*;
 
-import java.util.Arrays;
-
 import io.opentracing.contrib.specialagent.AgentRule;
 import net.bytebuddy.agent.builder.AgentBuilder;
 import net.bytebuddy.agent.builder.AgentBuilder.Transformer;
@@ -31,8 +29,8 @@ public class ServletContextAgentRule extends AgentRule {
   public static boolean filterAdded = false;
 
   @Override
-  public Iterable<? extends AgentBuilder> buildAgent(final AgentBuilder builder) throws Exception {
-    return Arrays.asList(builder
+  public AgentBuilder buildAgentChainedGlobal1(final AgentBuilder builder) {
+    return builder
       .type(named("org.eclipse.jetty.servlet.ServletContextHandler"))
       .transform(new Transformer() {
         @Override
@@ -50,13 +48,13 @@ public class ServletContextAgentRule extends AgentRule {
         @Override
         public Builder<?> transform(final Builder<?> builder, final TypeDescription typeDescription, final ClassLoader classLoader, final JavaModule module) {
           return builder.visit(Advice.to(ServletContextAdvice.class).on(isConstructor()));
-        }}));
+        }});
   }
 
   public static class JettyAdvice {
     @Advice.OnMethodExit
     public static void exit(final @Advice.Origin String origin, final @Advice.This Object thiz) {
-      if (isEnabled("ServletContextAgentRule", origin))
+      if (isAllowed("ServletContextAgentRule", origin))
         filterAdded = JettyAgentIntercept.addFilter(thiz);
     }
   }
@@ -64,7 +62,7 @@ public class ServletContextAgentRule extends AgentRule {
   public static class ServletContextAdvice {
     @Advice.OnMethodExit
     public static void exit(final @Advice.Origin String origin, final @Advice.This Object thiz) {
-      if (isEnabled("ServletContextAgentRule", origin))
+      if (isAllowed("ServletContextAgentRule", origin))
         filterAdded = ServletContextAgentIntercept.addFilter(thiz);
     }
   }

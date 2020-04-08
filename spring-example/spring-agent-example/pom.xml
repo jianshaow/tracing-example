@@ -118,7 +118,7 @@
                     <stopPort>8088</stopPort>
                     <jvmArgs>
                         -javaagent:${agent.jar}
-                        -Dsa.instrumentation.plugin.servlet.spanDecorators.classpath=${spen-decorator.jar}
+                        -Dsa.integration.servlet.spanDecorators.classpath=${spen-decorator.jar}
                         -Dsa.config=etc/agent-config.properties
                     </jvmArgs>
                 </configuration>

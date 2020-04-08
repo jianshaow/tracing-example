@@ -126,7 +126,7 @@
                     <wait>60000</wait>
                     <agents>${agent.jar}</agents>
                     <jvmArguments>
-                        -Dsa.instrumentation.plugin.include=${instrumentation.jar}
+                        -Dsa.include=${instrumentation.jar}
                         -Dsa.config=etc/agent-config.properties
                     </jvmArguments>
                 </configuration>

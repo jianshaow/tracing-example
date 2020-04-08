@@ -119,6 +119,11 @@
                                     <artifactId>cxf-span</artifactId>
                                     <version>${project.version}</version>
                                 </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.test.tracing</groupId>
+                                    <artifactId>cxf-span-interceptor</artifactId>
+                                    <version>${project.version}</version>
+                                </artifactItem>
                             </artifactItems>
                             <outputDirectory>${project.build.directory}/agent</outputDirectory>
                             <useBaseVersion>true</useBaseVersion>
@@ -136,7 +141,10 @@
                     <jvmArgs>
                         -javaagent:${agent.jar}
                         -Dsa.config=etc/agent-config.properties
-                        -Dsa.instrumentation.plugin.include=${instrumentation.jar}
+                        <!-- 
+                        -Dsa.integration.include=${instrumentation.jar}
+                         -->
+                        -Dsa.integration.cxf.interceptors.classpath=target/agent/cxf-span-interceptor-0.2.0-SNAPSHOT.jar
                     </jvmArgs>
                 </configuration>
                 <dependencies>

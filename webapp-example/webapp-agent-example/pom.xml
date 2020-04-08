@@ -103,6 +103,10 @@
                     <jvmArgs>
                         -javaagent:${agent.jar}
                         -Dsa.config=etc/agent-config.properties
+                        <!-- 
+                        -agentlib:jdwp=transport=dt_socket,server=y,address=8000
+                         -->
+                        -Dsa.rewrite=etc/customized-span.json
                     </jvmArgs>
                 </configuration>
                 <dependencies>

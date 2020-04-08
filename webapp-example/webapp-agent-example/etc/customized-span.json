@@ -1,0 +1,28 @@
+{
+  "*": [
+    {
+      "input": {
+        "type": "operationName"
+      },
+      "output": [
+        {
+          "type": "tag",
+          "key": "customized.tag",
+          "value": "we tag what we want"
+        }
+      ]
+    },
+    {
+      "input": {"type": "tag",
+        "key": "http.url",
+        "value": ".*(localhost).*"
+      },
+      "output": [
+        {
+          "type": "tag",
+          "value": "******$1*****"
+        }
+      ]
+    }
+  ]
+}

@@ -16,6 +16,7 @@ import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -27,7 +28,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 @RunWith(AgentRunner.class)
-@AgentRunner.Config(disable = "*")
+@Ignore
 public class FilterTest {
 
 	// jetty starts on random port

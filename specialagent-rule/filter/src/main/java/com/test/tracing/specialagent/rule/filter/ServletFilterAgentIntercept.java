@@ -30,6 +30,7 @@ import javax.servlet.ServletRequest;
 import com.test.tracing.span.CustomizedSpanDecorator;
 
 import io.opentracing.contrib.specialagent.Logger;
+import io.opentracing.contrib.web.servlet.filter.ServletFilterSpanDecorator;
 import io.opentracing.contrib.web.servlet.filter.TracingFilter;
 import io.opentracing.util.GlobalTracer;
 
@@ -50,7 +51,7 @@ public abstract class ServletFilterAgentIntercept {
       if (filter != null)
         return filter;
 
-      servletContextToFilter.put(context, filter = proxy ? new TracingProxyFilter(GlobalTracer.get(), context) : new TracingFilter(GlobalTracer.get(), Collections.singletonList(new CustomizedSpanDecorator()), null));
+      servletContextToFilter.put(context, filter = proxy ? new TracingProxyFilter(GlobalTracer.get(), context) : new TracingFilter(GlobalTracer.get(), Collections.singletonList((ServletFilterSpanDecorator)new CustomizedSpanDecorator()), null));
       return filter;
     }
   }
