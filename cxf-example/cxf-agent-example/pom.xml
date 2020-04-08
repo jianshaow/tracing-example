@@ -25,6 +25,7 @@
       <properties>
         <agent.jar>target\\agent\\opentracing-specialagent-${specialagent.version}.jar</agent.jar>
         <instrumentation.jar>target\\agent\\cxf-span-${project.version}.jar</instrumentation.jar>
+        <interceptor.jar>target\\agent\\cxf-span-interceptor-${project.version}.jar</interceptor.jar>
       </properties>
     </profile>
     <profile>
@@ -34,6 +35,7 @@
       <properties>
         <agent.jar>target/agent/opentracing-specialagent-${specialagent.version}.jar</agent.jar>
         <instrumentation.jar>target/agent/cxf-span-${project.version}.jar</instrumentation.jar>
+        <interceptor.jar>target/agent/cxf-span-interceptor-${project.version}.jar</interceptor.jar>
       </properties>
     </profile>
   </profiles>
@@ -137,9 +139,7 @@
             -javaagent:${agent.jar}
             -Dsa.config=etc/agent-config.properties
             -Dsa.include=${instrumentation.jar}
-            <!-- 
-            -Dsa.integration.cxf.interceptors.classpath=target/agent/cxf-span-interceptor-0.2.0-SNAPSHOT.jar
-             -->
+            -Dsa.integration.cxf.interceptors.classpath=${interceptor.jar}
           </jvmArgs>
         </configuration>
         <dependencies>

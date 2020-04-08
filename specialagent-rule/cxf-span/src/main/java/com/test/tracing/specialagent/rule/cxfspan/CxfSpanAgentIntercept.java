@@ -19,7 +19,6 @@ public class CxfSpanAgentIntercept {
         Span span = traceScope.getSpan();
         span.setTag(Tags.COMPONENT, component);
         span.setTag(Tags.SPAN_KIND, spanKind);
-        span.setTag("customized.tag", "we tag what we want");
       }
     } catch (NoSuchMethodException | SecurityException | IllegalAccessException
         | IllegalArgumentException | InvocationTargetException e) {
