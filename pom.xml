@@ -94,6 +94,11 @@
       </dependency>
       <dependency>
         <groupId>com.test.tracing</groupId>
+        <artifactId>cxf-span-interceptor</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.test.tracing</groupId>
         <artifactId>servlet-span-decorator</artifactId>
         <version>${project.version}</version>
       </dependency>

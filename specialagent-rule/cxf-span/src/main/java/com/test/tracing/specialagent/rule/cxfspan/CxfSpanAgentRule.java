@@ -23,7 +23,7 @@ public class CxfSpanAgentRule extends AgentRule {
           public Builder<?> transform(final Builder<?> builder,
               final TypeDescription typeDescription, final ClassLoader classLoader,
               final JavaModule module) {
-            return builder.visit(Advice.to(CxfSpanClientAdvice.class).on(named("stopTraceSpan")));
+            return builder.visit(advice(typeDescription).to(CxfSpanClientAdvice.class).on(named("stopTraceSpan")));
           }
         });
   }
@@ -39,16 +39,16 @@ public class CxfSpanAgentRule extends AgentRule {
               final TypeDescription typeDescription, final ClassLoader classLoader,
               final JavaModule module) {
             return builder
-                .visit(Advice.to(CxfSpanServerAdvice.class).on(named("stopTraceSpan")));
+                .visit(advice(typeDescription).to(CxfSpanServerAdvice.class).on(named("stopTraceSpan")));
           }
         });
   }
 
   public static class CxfSpanClientAdvice {
     @Advice.OnMethodEnter
-    public static void enter(final @Advice.Origin String origin,
+    public static void enter(final @ClassName String className, final @Advice.Origin String origin,
         @Advice.Argument(value = 0, readOnly = false, typing = Typing.DYNAMIC) Object request) {
-      if (isAllowed("CxfRsAgentRule", origin)) {
+      if (isAllowed(className, origin)) {
         CxfSpanAgentIntercept.stopTracingSpan(request, "cxf-client", Tags.SPAN_KIND_CLIENT);
       }
     }
@@ -56,9 +56,9 @@ public class CxfSpanAgentRule extends AgentRule {
 
   public static class CxfSpanServerAdvice {
     @Advice.OnMethodEnter
-    public static void enter(final @Advice.Origin String origin,
+    public static void enter(final @ClassName String className, final @Advice.Origin String origin,
         @Advice.Argument(value = 3, readOnly = false, typing = Typing.DYNAMIC) Object request) {
-      if (isAllowed("CxfRsAgentRule", origin)) {
+      if (isAllowed(className, origin)) {
         CxfSpanAgentIntercept.stopTracingSpan(request, "cxf-server", Tags.SPAN_KIND_SERVER);
       }
     }

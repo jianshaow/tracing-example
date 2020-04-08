@@ -35,7 +35,7 @@ public class ServletContextAgentRule extends AgentRule {
       .transform(new Transformer() {
         @Override
         public Builder<?> transform(final Builder<?> builder, final TypeDescription typeDescription, final ClassLoader classLoader, final JavaModule module) {
-          return builder.visit(Advice.to(JettyAdvice.class).on(isConstructor()));
+          return builder.visit(advice(typeDescription).to(JettyAdvice.class).on(isConstructor()));
         }})
       .type(not(isInterface()).and(hasSuperType(named("javax.servlet.ServletContext"))
         // Jetty is handled separately due to the (otherwise) need for tracking state of the ServletContext
@@ -47,22 +47,22 @@ public class ServletContextAgentRule extends AgentRule {
       .transform(new Transformer() {
         @Override
         public Builder<?> transform(final Builder<?> builder, final TypeDescription typeDescription, final ClassLoader classLoader, final JavaModule module) {
-          return builder.visit(Advice.to(ServletContextAdvice.class).on(isConstructor()));
+          return builder.visit(advice(typeDescription).to(ServletContextAdvice.class).on(isConstructor()));
         }});
   }
 
   public static class JettyAdvice {
     @Advice.OnMethodExit
-    public static void exit(final @Advice.Origin String origin, final @Advice.This Object thiz) {
-      if (isAllowed("ServletContextAgentRule", origin))
+    public static void exit(final @ClassName String className, final @Advice.Origin String origin, final @Advice.This Object thiz) {
+      if (isAllowed(className, origin))
         filterAdded = JettyAgentIntercept.addFilter(thiz);
     }
   }
 
   public static class ServletContextAdvice {
     @Advice.OnMethodExit
-    public static void exit(final @Advice.Origin String origin, final @Advice.This Object thiz) {
-      if (isAllowed("ServletContextAgentRule", origin))
+    public static void exit(final @ClassName String className, final @Advice.Origin String origin, final @Advice.This Object thiz) {
+      if (isAllowed(className, origin))
         filterAdded = ServletContextAgentIntercept.addFilter(thiz);
     }
   }
