@@ -126,7 +126,9 @@
           <wait>60000</wait>
           <agents>${agent.jar}</agents>
           <jvmArguments>
+          <!-- 
             -agentlib:jdwp=transport=dt_socket,server=y,address=8000
+           -->
             -Dsa.include=${instrumentation.jar}
             -Dsa.config=etc/agent-config.properties
           </jvmArguments>
