@@ -46,7 +46,7 @@
     <jedis.version>2.10.2</jedis.version>
     <redisson.version>3.11.2</redisson.version>
     <mchange-commons.version>0.2.19</mchange-commons.version>
-    <mysql.version>8.0.12</mysql.version>
+    <mysql.version>8.0.16</mysql.version>
     <cassandra-driver.version>3.7.2</cassandra-driver.version>
   </properties>
 
