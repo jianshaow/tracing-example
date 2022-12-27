@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import io.opentracing.Tracer;
+import io.opentracing.contrib.redis.common.TracingConfiguration;
 import io.opentracing.contrib.redis.redisson.TracingRedissonClient;
 
 @Configuration
@@ -21,7 +22,9 @@ public class RedisConfig {
         final Config config = new Config();
         config.useSingleServer().setAddress("redis://localhost:6379").setClientName("echo-service");
         final RedissonClient redissonClient = Redisson.create(config);
-        final RedissonClient tracingRedissonClient = new TracingRedissonClient(redissonClient, tracer, true);
+        final TracingConfiguration tracingConfig = new TracingConfiguration.Builder(tracer)
+                .traceWithActiveSpanOnly(true).build();
+        final RedissonClient tracingRedissonClient = new TracingRedissonClient(redissonClient, tracingConfig);
         return tracingRedissonClient;
     }
 }

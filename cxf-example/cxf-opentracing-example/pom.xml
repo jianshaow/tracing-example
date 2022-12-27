@@ -6,19 +6,13 @@
         <groupId>com.test.tracing</groupId>
         <artifactId>cxf-example</artifactId>
         <relativePath>../</relativePath>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.2.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>cxf-opentracing-example</artifactId>
     <packaging>war</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
-
-    <properties>
-        <cxf.version>3.2.5</cxf.version>
-        <legacy.brave.version>4.8.1</legacy.brave.version>
-        <legacy.reporter.version>2.0.2</legacy.reporter.version>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -29,13 +23,7 @@
         <dependency>
             <groupId>io.opentracing.brave</groupId>
             <artifactId>brave-opentracing</artifactId>
-            <version>0.22.1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.opentracing</groupId>
-                    <artifactId>opentracing-api</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>${brave-opentracing.version}</version>
         </dependency>
 
         <dependency>
@@ -47,49 +35,39 @@
                     <artifactId>zipkin</artifactId>
                 </exclusion>
             </exclusions>
-            <version>${legacy.brave.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.zipkin.zipkin2</groupId>
             <artifactId>zipkin</artifactId>
-            <version>2.1.0</version>
         </dependency>
-
         <dependency>
             <groupId>io.zipkin.brave</groupId>
             <artifactId>brave-instrumentation-servlet</artifactId>
-            <version>${legacy.brave.version}</version>
         </dependency>
         <dependency>
             <groupId>io.zipkin.brave</groupId>
             <artifactId>brave-instrumentation-http</artifactId>
-            <version>${legacy.brave.version}</version>
         </dependency>
         <dependency>
             <groupId>io.zipkin.brave</groupId>
             <artifactId>brave-spring-beans</artifactId>
-            <version>${legacy.brave.version}</version>
         </dependency>
         <dependency>
             <groupId>io.zipkin.brave</groupId>
             <artifactId>brave-context-slf4j</artifactId>
-            <version>${legacy.brave.version}</version>
         </dependency>
         <dependency>
             <groupId>io.zipkin.reporter2</groupId>
             <artifactId>zipkin-reporter</artifactId>
-            <version>${legacy.reporter.version}</version>
         </dependency>
         <dependency>
             <groupId>io.zipkin.reporter2</groupId>
             <artifactId>zipkin-sender-okhttp3</artifactId>
-            <version>${legacy.reporter.version}</version>
         </dependency>
         <dependency>
             <groupId>io.zipkin.reporter2</groupId>
             <artifactId>zipkin-reporter-spring-beans</artifactId>
-            <version>2.2.0</version>
         </dependency>
 
         <dependency>
@@ -105,10 +83,6 @@
             <artifactId>spring-jdbc</artifactId>
         </dependency>
         <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-frontend-jaxrs</artifactId>
         </dependency>
@@ -119,17 +93,6 @@
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-integration-tracing-opentracing</artifactId>
-            <version>${cxf.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.opentracing</groupId>
-                    <artifactId>opentracing-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.opentracing</groupId>
-                    <artifactId>opentracing-util</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.jaxrs</groupId>
@@ -138,6 +101,17 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.opentracing</groupId>
+            <artifactId>opentracing-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.opentracing</groupId>
+            <artifactId>opentracing-util</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -150,22 +124,22 @@
                     <dependency>
                         <groupId>com.mchange</groupId>
                         <artifactId>c3p0</artifactId>
-                        <version>0.9.5.2</version>
+                        <version>${c3p0.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>com.mchange</groupId>
                         <artifactId>mchange-commons-java</artifactId>
-                        <version>0.2.15</version>
+                        <version>${mchange-commons.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
-                        <version>8.0.12</version>
+                        <version>${mysql.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>io.opentracing.contrib</groupId>
                         <artifactId>opentracing-jdbc</artifactId>
-                        <version>0.0.5</version>
+                        <version>${opentracing-jdbc.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>io.opentracing</groupId>
@@ -181,4 +155,23 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.zipkin.brave</groupId>
+                <artifactId>brave-bom</artifactId>
+                <version>${brave.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.zipkin.reporter2</groupId>
+                <artifactId>zipkin-reporter-bom</artifactId>
+                <version>${zipkin-reporter.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

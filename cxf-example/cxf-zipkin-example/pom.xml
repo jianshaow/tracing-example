@@ -6,20 +6,13 @@
         <groupId>com.test.tracing</groupId>
         <artifactId>cxf-example</artifactId>
         <relativePath>../</relativePath>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.2.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>cxf-zipkin-example</artifactId>
     <packaging>war</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
-
-    <properties>
-        <cxf.version>3.1.12</cxf.version>
-        <jaxrs-api.version>2.0.1</jaxrs-api.version>
-        <brave.version>5.2.0</brave.version>
-        <zipkin-reporter.version>2.7.7</zipkin-reporter.version>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -129,17 +122,17 @@
                     <dependency>
                         <groupId>com.mchange</groupId>
                         <artifactId>c3p0</artifactId>
-                        <version>0.9.5.2</version>
+                        <version>${c3p0.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>com.mchange</groupId>
                         <artifactId>mchange-commons-java</artifactId>
-                        <version>0.2.15</version>
+                        <version>${mchange-commons.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
-                        <version>8.0.12</version>
+                        <version>${mysql.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>io.zipkin.brave</groupId>
@@ -149,7 +142,7 @@
                     <dependency>
                         <groupId>com.test.tracing</groupId>
                         <artifactId>p6spy-config</artifactId>
-                        <version>0.0.1-SNAPSHOT</version>
+                        <version>${project.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
