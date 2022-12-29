@@ -16,9 +16,7 @@
 
     <modules>
         <module>spring-echo-service</module>
-        <module>spring-jaeger-example</module>
         <module>spring-agent-example</module>
-        <module>spring-boot-jaeger-example</module>
         <module>spring-boot-agent-example</module>
     </modules>
 
@@ -50,49 +48,6 @@
                 <artifactId>feign-okhttp</artifactId>
                 <version>${feign.version}</version>
             </dependency>
-            <dependency>
-                <groupId>io.github.openfeign.opentracing</groupId>
-                <artifactId>feign-opentracing</artifactId>
-                <version>${opentracing-feign.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.jaegertracing</groupId>
-                <artifactId>jaeger-client</artifactId>
-                <version>${jaeger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.opentracing</groupId>
-                <artifactId>opentracing-api</artifactId>
-                <version>${opentracing.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.opentracing</groupId>
-                <artifactId>opentracing-util</artifactId>
-                <version>${opentracing.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.opentracing.contrib</groupId>
-                <artifactId>opentracing-spring-web</artifactId>
-                <version>${opentracing-spring-web.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.opentracing.contrib</groupId>
-                <artifactId>opentracing-spring-jaeger-web-starter</artifactId>
-                <version>${opentracing-spring-jaeger-web.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.opentracing.contrib</groupId>
-                <artifactId>opentracing-jdbc</artifactId>
-                <version>${opentracing-jdbc.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.opentracing.contrib</groupId>
-                <artifactId>opentracing-redis-redisson</artifactId>
-                <version>${opentracing-redis.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -120,6 +75,16 @@
                     </executions>
                     <configuration>
                         <classifier>exec</classifier>
+                        <fork>true</fork>
+                        <wait>60000</wait>
+                        <agents>${agent.jar}</agents>
+                        <jvmArguments>
+                          -Dotel.javaagent.configuration-file=etc/agent-config.properties
+                          -Ddb_usr=appuser -Ddb_pwd=123456
+                          <!--
+                          -agentlib:jdwp=transport=dt_socket,server=y,address=8000
+                          -->
+                        </jvmArguments>
                     </configuration>
                 </plugin>
             </plugins>
