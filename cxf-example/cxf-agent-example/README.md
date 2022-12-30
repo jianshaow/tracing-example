@@ -5,7 +5,7 @@ Use opentracing specialagent to inject tracing feature transparently.
 ```shell
 mvn clean install
 
-mvn jetty:run-forked
+mvn jetty:run -Djetty.deployMode=FORK
 ```
 
 Stop jetty with command below in another terminal
