@@ -49,8 +49,8 @@
       <version>${c3p0.version}</version>
     </dependency>
     <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
     </dependency>
 
     <dependency>
@@ -126,9 +126,9 @@
           <wait>60000</wait>
           <agents>${agent.jar}</agents>
           <jvmArguments>
-          <!-- 
+            <!-- 
             -agentlib:jdwp=transport=dt_socket,server=y,address=8000
-           -->
+            -->
             -Dsa.include=${instrumentation.jar}
             -Dsa.config=etc/agent-config.properties
           </jvmArguments>

@@ -22,29 +22,29 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <specialagent.version>1.7.4</specialagent.version>
     <opentracing.version>0.33.0</opentracing.version>
-    <opentracing-redis.version>0.1.14</opentracing-redis.version>
+    <opentracing-redis.version>0.1.16</opentracing-redis.version>
     <opentracing-filter.version> 0.4.1</opentracing-filter.version>
-    <opentracing-httpclient.version>0.2.0</opentracing-httpclient.version>
-    <opentracing-feign.version>0.3.0</opentracing-feign.version>
-    <opentracing-spring-web.version>3.0.0</opentracing-spring-web.version>
-    <opentracing-spring-jaeger-web.version>2.0.3</opentracing-spring-jaeger-web.version>
-    <opentracing-jdbc.version>0.2.3</opentracing-jdbc.version>
-    <brave.version>5.9.1</brave.version>
-    <brave-opentracing.version>0.35.0</brave-opentracing.version>
-    <zipkin-reporter.version>2.12.0</zipkin-reporter.version>
+    <opentracing-httpclient.version>0.3.3</opentracing-httpclient.version>
+    <opentracing-feign.version>0.4.1</opentracing-feign.version>
+    <opentracing-spring-web.version>4.1.0</opentracing-spring-web.version>
+    <opentracing-spring-jaeger-web.version>3.3.1</opentracing-spring-jaeger-web.version>
+    <opentracing-jdbc.version>0.2.15</opentracing-jdbc.version>
+    <brave.version>5.14.1</brave.version>
+    <brave-opentracing.version>1.0.0</brave-opentracing.version>
+    <zipkin-reporter.version>2.16.3</zipkin-reporter.version>
     <spring.version>5.3.24</spring.version>
     <spring-boot.version>2.7.7</spring-boot.version>
     <jaeger.version>1.8.1</jaeger.version>
     <cxf.version>3.5.5</cxf.version>
     <jetty.version>10.0.13</jetty.version>
-    <feign.version>10.7.0</feign.version>
-    <jackson.version>2.9.1</jackson.version>
+    <feign.version>12.1</feign.version>
+    <jackson.version>2.14.1</jackson.version>
     <httpclient.version>4.5.14</httpclient.version>
     <servlet-api.version>4.0.1</servlet-api.version>
-    <jaxrs-api.version>2.1</jaxrs-api.version>
+    <jaxrs-api.version>2.1.1</jaxrs-api.version>
     <c3p0.version>0.9.5.5</c3p0.version>
-    <jedis.version>3.3.0</jedis.version>
-    <redisson.version>3.18.1</redisson.version>
+    <jedis.version>3.9.0</jedis.version>
+    <redisson.version>3.19.0</redisson.version>
     <mchange-commons.version>0.2.20</mchange-commons.version>
     <mysql.version>8.0.31</mysql.version>
     <cassandra-driver.version>3.11.3</cassandra-driver.version>
@@ -233,8 +233,8 @@
       </dependency>
 
       <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
+        <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
         <version>${mysql.version}</version>
       </dependency>
 
