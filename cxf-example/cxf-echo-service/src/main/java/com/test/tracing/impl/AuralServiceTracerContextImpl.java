@@ -10,7 +10,7 @@ public class AuralServiceTracerContextImpl extends AuralServiceImpl {
     private TracerContext tracerContext;
 
     @Override
-    public void beforeCallMindService() {
-        tracerContext.timeline("recall in mind...");
+    public void beforeCallMindService(String msg) {
+        tracerContext.timeline("recall in mind with " + msg + "...");
     }
 }

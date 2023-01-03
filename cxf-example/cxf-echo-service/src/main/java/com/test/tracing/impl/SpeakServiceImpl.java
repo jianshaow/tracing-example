@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import com.test.tracing.MindService;
 import com.test.tracing.SpeakService;
 
+import io.opentelemetry.instrumentation.annotations.WithSpan;
+
 public class SpeakServiceImpl implements SpeakService {
 
     private static Logger logger = LoggerFactory.getLogger(SpeakServiceImpl.class);
@@ -14,15 +16,14 @@ public class SpeakServiceImpl implements SpeakService {
 
     @Override
     public String say(String msg) {
-        beforeCallMindService();
         final String result = mindService.respond(msg);
-        final int latency = SleepUtil.sleepRandomly(50);
-        logger.info("I stuttered for {} ms.", latency);
+        afterCallMindService();
         return result;
     }
 
-    protected void beforeCallMindService() {
-        // do nothing
+    protected void afterCallMindService() {
+        final int latency = SleepUtil.sleepRandomly(50);
+        logger.info("I stuttered for {} ms.", latency);
     }
 
     public void setMindService(MindService mindService) {

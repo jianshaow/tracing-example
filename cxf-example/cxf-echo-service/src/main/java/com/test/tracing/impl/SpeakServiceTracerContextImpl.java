@@ -10,7 +10,7 @@ public class SpeakServiceTracerContextImpl extends SpeakServiceImpl {
     private TracerContext tracerContext;
 
     @Override
-    public void beforeCallMindService() {
+    public void afterCallMindService() {
         tracerContext.timeline("respond in mind...");
     }
 }

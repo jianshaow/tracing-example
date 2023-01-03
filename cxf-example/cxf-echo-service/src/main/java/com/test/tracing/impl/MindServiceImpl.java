@@ -6,6 +6,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.test.tracing.MindService;
 
+import io.opentelemetry.instrumentation.annotations.WithSpan;
+
 public class MindServiceImpl implements MindService {
 
     private static Logger logger = LoggerFactory.getLogger(MindServiceImpl.class);
@@ -21,15 +23,15 @@ public class MindServiceImpl implements MindService {
 
     @Override
     public String recall(String something) {
-        final int latency = SleepUtil.sleepRandomly(50);
-        logger.info("I lost my mind for {} ms.", latency);
         beforeCallMemory();
         template.execute("select * from application");
         return something;
     }
 
+    @WithSpan
     protected void beforeCallMemory() {
-        // do noting
+        final int latency = SleepUtil.sleepRandomly(50);
+        logger.info("I lost my mind for {} ms.", latency);
     }
 
     public void setTemplate(JdbcTemplate template) {
