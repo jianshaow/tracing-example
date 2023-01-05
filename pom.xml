@@ -40,11 +40,11 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <opentelemetry.version>1.21.0</opentelemetry.version>
-    <spring.version>5.3.24</spring.version>
+    <spring.version>5.3.22</spring.version>
     <spring-boot.version>2.7.7</spring-boot.version>
     <jaeger.version>1.8.1</jaeger.version>
-    <cxf.version>3.5.5</cxf.version>
-    <jetty.version>10.0.13</jetty.version>
+    <cxf.version>3.3.11</cxf.version>
+    <jetty.version>9.2.30.v20200428</jetty.version>
     <feign.version>12.1</feign.version>
     <jackson.version>2.14.1</jackson.version>
     <httpclient.version>4.5.14</httpclient.version>
@@ -66,7 +66,8 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.1</version>
           <configuration>
-            <release>11</release>
+            <source>1.8</source>
+            <target>1.8</target>
           </configuration>
         </plugin>
         <plugin>
@@ -81,9 +82,7 @@
           <configuration>
             <stopKey>alpha</stopKey>
             <stopPort>8088</stopPort>
-            <jettyXmls>
-			  <jettyXml>etc/jetty.xml</jettyXml>
-		    </jettyXmls>
+			<jettyXml>etc/jetty.xml</jettyXml>
             <jvmArgs>
               -javaagent:${agent.jar}
               -Dotel.javaagent.configuration-file=etc/agent-config.properties
