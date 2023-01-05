@@ -52,5 +52,5 @@ CREATE TABLE mydb.application (
 mvn clean install
 
 cd <example path>
-mvn jetty:run -Djetty.deployMode=FORK
+mvn jetty:run-forked
 ```
