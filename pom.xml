@@ -10,6 +10,7 @@
   <name>${project.groupId}:${project.artifactId}</name>
 
   <modules>
+    <module>extension</module>
     <module>webapp-example</module>
     <module>cxf-example</module>
     <module>spring-example</module>
@@ -25,6 +26,7 @@
       </activation>
       <properties>
         <agent.jar>target\\agent\\opentelemetry-javaagent-${opentelemetry.version}.jar</agent.jar>
+        <extension.jar>target\\agent\\extension-${project.version}.jar</extension.jar>
       </properties>
     </profile>
     <profile>
@@ -33,6 +35,7 @@
       </activation>
       <properties>
         <agent.jar>target/agent/opentelemetry-javaagent-${opentelemetry.version}.jar</agent.jar>
+        <extension.jar>target/agent/extension-${project.version}.jar</extension.jar>
       </properties>
     </profile>
   </profiles>
@@ -40,6 +43,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <opentelemetry.version>1.21.0</opentelemetry.version>
+    <auto-service.version>1.0.1</auto-service.version>
     <spring.version>5.3.24</spring.version>
     <spring-boot.version>2.7.7</spring-boot.version>
     <jaeger.version>1.8.1</jaeger.version>
@@ -86,6 +90,7 @@
 		    </jettyXmls>
             <jvmArgs>
               -javaagent:${agent.jar}
+              -Dotel.javaagent.extensions=${extension.jar}
               -Dotel.javaagent.configuration-file=etc/agent-config.properties
               -Ddb_usr=appuser -Ddb_pwd=123456
             </jvmArgs>
@@ -124,6 +129,11 @@
                     <artifactId>opentelemetry-javaagent</artifactId>
                     <version>${opentelemetry.version}</version>
                   </artifactItem>
+                  <artifactItem>
+                    <groupId>${project.groupId}</groupId>
+                    <artifactId>extension</artifactId>
+                    <version>${project.version}</version>
+                  </artifactItem>
                 </artifactItems>
                 <outputDirectory>${project.build.directory}/agent</outputDirectory>
                 <useBaseVersion>true</useBaseVersion>
@@ -138,11 +148,31 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>io.opentelemetry</groupId>
-        <artifactId>opentelemetry-bom</artifactId>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>extension</artifactId>
+        <version>${project.version}</version>
+        <scope>provided</scope>
+	  </dependency>
+
+      <dependency>
+        <groupId>io.opentelemetry.instrumentation</groupId>
+        <artifactId>opentelemetry-instrumentation-bom</artifactId>
         <version>${opentelemetry.version}</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>com.google.auto.service</groupId>
+        <artifactId>auto-service-annotations</artifactId>
+        <version>${auto-service.version}</version>
+        <optional>true</optional>
+      </dependency>
+      <dependency>
+        <groupId>com.google.auto.service</groupId>
+        <artifactId>auto-service</artifactId>
+        <version>${auto-service.version}</version>
+        <optional>true</optional>
       </dependency>
 
       <dependency>
@@ -274,8 +304,6 @@
         <artifactId>javax.servlet-api</artifactId>
         <version>${servlet-api.version}</version>
         <scope>provided</scope>
-        <!-- 
-        -->
       </dependency>
 
       <dependency>
