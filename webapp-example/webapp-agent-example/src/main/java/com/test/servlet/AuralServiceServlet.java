@@ -19,7 +19,7 @@ public class AuralServiceServlet extends HttpServlet {
         try (final InputStream in = req.getInputStream(); final PrintWriter out = resp.getWriter()) {
             resp.setContentType("text/plain");
             final String msg = IOUtils.toString(in, "UTF-8");
-            out.println(msg);
+            out.print(msg);
             in.close();
             out.close();
         }
