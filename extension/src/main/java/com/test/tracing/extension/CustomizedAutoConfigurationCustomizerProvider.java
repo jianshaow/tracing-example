@@ -30,9 +30,6 @@ public class CustomizedAutoConfigurationCustomizerProvider implements AutoConfig
 
 	private Map<String, String> getDefaultProperties() {
 		Map<String, String> properties = new HashMap<>();
-		properties.put("otel.exporter.otlp.endpoint", "http://backend:8080");
-		properties.put("otel.exporter.otlp.insecure", "true");
-		properties.put("otel.config.max.attrs", "16");
 		properties.put("otel.traces.sampler", "customized");
 		return properties;
 	}

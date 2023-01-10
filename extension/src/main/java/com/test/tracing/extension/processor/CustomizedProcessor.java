@@ -9,6 +9,7 @@ public class CustomizedProcessor implements SpanProcessor {
 	
 	@Override
 	public void onStart(Context parentContext, ReadWriteSpan span) {
+		System.out.println("span[" + span.getName() + "] started.");
 		span.setAttribute("customized tag", "test");
 	}
 
@@ -24,6 +25,6 @@ public class CustomizedProcessor implements SpanProcessor {
 
 	@Override
 	public boolean isEndRequired() {
-		return false;
+		return true;
 	}
 }

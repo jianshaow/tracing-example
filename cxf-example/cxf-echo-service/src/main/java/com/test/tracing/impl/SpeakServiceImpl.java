@@ -6,8 +6,6 @@ import org.slf4j.LoggerFactory;
 import com.test.tracing.MindService;
 import com.test.tracing.SpeakService;
 
-import io.opentelemetry.instrumentation.annotations.WithSpan;
-
 public class SpeakServiceImpl implements SpeakService {
 
     private static Logger logger = LoggerFactory.getLogger(SpeakServiceImpl.class);
