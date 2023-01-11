@@ -39,7 +39,7 @@
         </dependency>
         <dependency>
             <groupId>io.github.openfeign</groupId>
-            <artifactId>feign-jaxrs2</artifactId>
+            <artifactId>feign-jakarta</artifactId>
         </dependency>
         <dependency>
             <groupId>io.github.openfeign</groupId>
