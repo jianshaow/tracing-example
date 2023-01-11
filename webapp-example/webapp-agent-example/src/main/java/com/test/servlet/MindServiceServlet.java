@@ -35,7 +35,7 @@ public class MindServiceServlet extends HttpServlet {
         try (final InputStream in = req.getInputStream(); final PrintWriter out = resp.getWriter()) {
             resp.setContentType("text/plain");
             final String msg = IOUtils.toString(in, "UTF-8");
-            out.println(msg);
+            out.print(msg);
             in.close();
             out.close();
         }
@@ -66,7 +66,7 @@ public class MindServiceServlet extends HttpServlet {
                 logger.error(e.getMessage(), e);
             }
             if (appName != null) {
-                jedis.setex(appId.toString(), 10, appName);
+                jedis.setex(appId.toString(), 10l, appName);
             }
         }
     }
