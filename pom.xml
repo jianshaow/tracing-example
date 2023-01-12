@@ -16,31 +16,11 @@
     <module>spring-example</module>
   </modules>
 
-  <profiles>
-    <profile>
-      <id>windows</id>
-      <activation>
-        <os>
-          <family>Windows</family>
-        </os>
-      </activation>
-      <properties>
-        <agent.jar>target\\agent\\opentelemetry-javaagent-${opentelemetry.version}.jar</agent.jar>
-        <extension.jar>target\\agent\\extension-${project.version}.jar</extension.jar>
-      </properties>
-    </profile>
-    <profile>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <properties>
-        <agent.jar>target/agent/opentelemetry-javaagent-${opentelemetry.version}.jar</agent.jar>
-        <extension.jar>target/agent/extension-${project.version}.jar</extension.jar>
-      </properties>
-    </profile>
-  </profiles>
-
   <properties>
+    <agent.jar>target/agent/opentelemetry-javaagent-${opentelemetry.version}.jar</agent.jar>
+    <extension.dir>target/extension</extension.dir>
+    <agent.config>etc/agent-config.properties</agent.config>
+
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <opentelemetry.version>1.21.0</opentelemetry.version>
     <auto-service.version>1.0.1</auto-service.version>
@@ -93,9 +73,12 @@
 		    </jettyXmls>
             <jvmArgs>
               -javaagent:${agent.jar}
-              -Dotel.javaagent.extensions=${extension.jar}
-              -Dotel.javaagent.configuration-file=etc/agent-config.properties
+              -Dotel.javaagent.extensions=${extension.dir}
+              -Dotel.javaagent.configuration-file=${agent.config}
               -Ddb_usr=appuser -Ddb_pwd=123456
+              <!--
+              -agentlib:jdwp=transport=dt_socket,server=y,address=8000
+              -->
             </jvmArgs>
           </configuration>
           <dependencies>
@@ -132,13 +115,25 @@
                     <artifactId>opentelemetry-javaagent</artifactId>
                     <version>${opentelemetry.version}</version>
                   </artifactItem>
+                </artifactItems>
+                <outputDirectory>${project.build.directory}/agent</outputDirectory>
+                <useBaseVersion>true</useBaseVersion>
+              </configuration>
+            </execution>
+            <execution>
+              <id>prepare-extension</id>
+              <goals>
+                <goal>copy</goal>
+              </goals>
+              <configuration>
+                <artifactItems>
                   <artifactItem>
                     <groupId>${project.groupId}</groupId>
                     <artifactId>extension</artifactId>
                     <version>${project.version}</version>
                   </artifactItem>
                 </artifactItems>
-                <outputDirectory>${project.build.directory}/agent</outputDirectory>
+                <outputDirectory>${project.build.directory}/extension</outputDirectory>
                 <useBaseVersion>true</useBaseVersion>
               </configuration>
             </execution>
