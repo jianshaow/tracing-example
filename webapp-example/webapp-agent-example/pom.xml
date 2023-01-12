@@ -6,7 +6,7 @@
     <groupId>com.test.tracing</groupId>
     <artifactId>webapp-example</artifactId>
     <relativePath>../</relativePath>
-    <version>0.2.1-SNAPSHOT</version>
+    <version>0.2.2-SNAPSHOT</version>
   </parent>
 
   <artifactId>webapp-agent-example</artifactId>
