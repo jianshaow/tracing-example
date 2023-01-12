@@ -36,7 +36,7 @@ public class EchoServiceServlet extends HttpServlet {
             String result = this.callAuralService(msg);
             result = this.callMindService(result);
             result = this.callSpeakService(result);
-            out.println(result);
+            out.print(result);
             logger.info("echo back the result: {}", result);
             in.close();
             out.close();

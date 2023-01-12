@@ -15,6 +15,11 @@
 
   <dependencies>
     <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>extension</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>com.test.tracing</groupId>
       <artifactId>spring-echo-service</artifactId>
     </dependency>
