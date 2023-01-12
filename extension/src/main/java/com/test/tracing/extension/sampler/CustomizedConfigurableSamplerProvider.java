@@ -11,7 +11,8 @@ public class CustomizedConfigurableSamplerProvider implements ConfigurableSample
 
 	@Override
 	public Sampler createSampler(ConfigProperties config) {
-		return new CustomizedSampler();
+		return Sampler.parentBased(
+				new CustomizedSampler(Sampler.traceIdRatioBased(config.getDouble("otel.traces.sampler.arg", 1))));
 	}
 
 	@Override
