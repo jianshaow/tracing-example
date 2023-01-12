@@ -1,8 +1,8 @@
 package com.test.tracing.impl;
 
-import javax.ws.rs.core.Context;
-
 import org.apache.cxf.tracing.TracerContext;
+
+import jakarta.ws.rs.core.Context;
 
 public class AuralServiceTracerContextImpl extends AuralServiceImpl {
 
