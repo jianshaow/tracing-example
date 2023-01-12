@@ -15,7 +15,11 @@ public class CustomizedSampler implements Sampler {
 	@Override
 	public SamplingResult shouldSample(Context parentContext, String traceId, String name, SpanKind spanKind,
 			Attributes attributes, List<LinkData> parentLinks) {
-		System.out.println("span[" + name + "] is sampled.");
+		if (spanKind == SpanKind.CLIENT && parentContext == Context.root()) {
+			System.out.println("span[" + name + "] will be recorded only.");
+			return SamplingResult.create(SamplingDecision.RECORD_ONLY);
+		}
+		System.out.println("span[" + name + "] will be sampled.");
 		return SamplingResult.create(SamplingDecision.RECORD_AND_SAMPLE);
 	}
 
