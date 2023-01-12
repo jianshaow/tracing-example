@@ -79,7 +79,8 @@
                         <wait>60000</wait>
                         <agents>${agent.jar}</agents>
                         <jvmArguments>
-                          -Dotel.javaagent.configuration-file=etc/agent-config.properties
+                          -Dotel.javaagent.extensions=${extension.dir}
+                          -Dotel.javaagent.configuration-file=${agent.config}
                           -Ddb_usr=appuser -Ddb_pwd=123456
                           <!--
                           -agentlib:jdwp=transport=dt_socket,server=y,address=8000

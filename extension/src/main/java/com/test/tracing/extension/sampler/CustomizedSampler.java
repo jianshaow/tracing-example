@@ -11,7 +11,13 @@ import io.opentelemetry.sdk.trace.samplers.SamplingDecision;
 import io.opentelemetry.sdk.trace.samplers.SamplingResult;
 
 public class CustomizedSampler implements Sampler {
-	
+
+	private final Sampler root;
+
+	public CustomizedSampler(Sampler root) {
+		this.root = root;
+	}
+
 	@Override
 	public SamplingResult shouldSample(Context parentContext, String traceId, String name, SpanKind spanKind,
 			Attributes attributes, List<LinkData> parentLinks) {
@@ -20,7 +26,7 @@ public class CustomizedSampler implements Sampler {
 			return SamplingResult.create(SamplingDecision.RECORD_ONLY);
 		}
 		System.out.println("span[" + name + "] will be sampled.");
-		return SamplingResult.create(SamplingDecision.RECORD_AND_SAMPLE);
+		return this.root.shouldSample(parentContext, traceId, name, spanKind, attributes, parentLinks);
 	}
 
 	@Override
