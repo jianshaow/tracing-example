@@ -35,7 +35,7 @@ Database information as below:
 Keyspace: mydb;
 
 ~~~cql
-CREATE KEYSPACE mydb WITH replication = {'class': 'SimpleStrategy'}
+CREATE KEYSPACE mydb WITH replication = {'class': 'SimpleStrategy'};
 
 CREATE TABLE mydb.application (
    id int,

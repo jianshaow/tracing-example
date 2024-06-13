@@ -28,8 +28,8 @@
             </dependency>
 
             <dependency>
-                <groupId>javax.ws.rs</groupId>
-                <artifactId>javax.ws.rs-api</artifactId>
+                <groupId>jakarta.ws.rs</groupId>
+                <artifactId>jakarta.ws.rs-api</artifactId>
                 <version>${jaxrs-api.version}</version>
             </dependency>
             <dependency>
@@ -74,7 +74,6 @@
                     </executions>
                     <configuration>
                         <classifier>exec</classifier>
-                        <fork>true</fork>
                         <wait>60000</wait>
                         <agents>${agent.jar}</agents>
                         <jvmArguments>

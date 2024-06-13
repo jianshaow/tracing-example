@@ -3,6 +3,8 @@ package com.test.servlet;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.io.Serial;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,9 +12,9 @@ import java.sql.SQLException;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import org.apache.commons.io.IOUtils;
@@ -23,18 +25,19 @@ import redis.clients.jedis.Jedis;
 
 public class MindServiceServlet extends HttpServlet {
 
-    private static Logger logger = LoggerFactory.getLogger(MindServiceServlet.class);
+    private static final Logger logger = LoggerFactory.getLogger(MindServiceServlet.class);
 
+    @Serial
     private static final long serialVersionUID = -7766401686496991505L;
 
-    private Jedis jedis = new Jedis();
+    private final Jedis jedis = new Jedis("host.docker.internal", 6379);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         accessDB();
         try (final InputStream in = req.getInputStream(); final PrintWriter out = resp.getWriter()) {
             resp.setContentType("text/plain");
-            final String msg = IOUtils.toString(in, "UTF-8");
+            final String msg = IOUtils.toString(in, StandardCharsets.UTF_8);
             out.print(msg);
             in.close();
             out.close();
@@ -42,8 +45,8 @@ public class MindServiceServlet extends HttpServlet {
     }
 
     private void accessDB() {
-        final Integer appId = 1;
-        String appName = jedis.get(appId.toString());
+        final int appId = 1;
+        String appName = jedis.get(Integer.toString(appId));
         if (appName == null) {
             DataSource ds = null;
             try {
@@ -66,7 +69,7 @@ public class MindServiceServlet extends HttpServlet {
                 logger.error(e.getMessage(), e);
             }
             if (appName != null) {
-                jedis.setex(appId.toString(), 10, appName);
+                jedis.setex(Integer.toString(appId), 10, appName);
             }
         }
     }

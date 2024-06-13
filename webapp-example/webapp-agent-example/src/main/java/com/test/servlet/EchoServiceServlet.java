@@ -1,13 +1,11 @@
 package com.test.servlet;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
@@ -21,17 +19,18 @@ import org.slf4j.LoggerFactory;
 
 public class EchoServiceServlet extends HttpServlet {
 
-    private static Logger logger = LoggerFactory.getLogger(EchoServiceServlet.class);
+    private static final Logger logger = LoggerFactory.getLogger(EchoServiceServlet.class);
 
+    @Serial
     private static final long serialVersionUID = -7766401686496991505L;
 
-    private HttpClient httpClient = HttpClientBuilder.create().build();
+    private final HttpClient httpClient = HttpClientBuilder.create().build();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try (final InputStream in = req.getInputStream(); final PrintWriter out = resp.getWriter()) {
             resp.setContentType("text/plain");
-            final String msg = IOUtils.toString(in, "UTF-8");
+            final String msg = IOUtils.toString(in, StandardCharsets.UTF_8);
             logger.info("be requested to echo a message: {}", msg);
             String result = this.callAuralService(msg);
             result = this.callMindService(result);

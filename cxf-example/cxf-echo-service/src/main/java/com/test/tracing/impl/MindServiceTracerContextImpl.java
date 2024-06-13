@@ -1,6 +1,6 @@
 package com.test.tracing.impl;
 
-import javax.ws.rs.core.Context;
+import jakarta.ws.rs.core.Context;
 
 import org.apache.cxf.tracing.TracerContext;
 
