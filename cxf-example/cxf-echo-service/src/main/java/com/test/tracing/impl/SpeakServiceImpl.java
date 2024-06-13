@@ -8,7 +8,7 @@ import com.test.tracing.SpeakService;
 
 public class SpeakServiceImpl implements SpeakService {
 
-    private static Logger logger = LoggerFactory.getLogger(SpeakServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(SpeakServiceImpl.class);
 
     private MindService mindService;
 

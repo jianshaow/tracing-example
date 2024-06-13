@@ -24,7 +24,7 @@ import com.test.tracing.service.MindService;
 @RequestMapping("/mind")
 public class MindServiceImpl implements MindService {
 
-    private static Logger logger = LoggerFactory.getLogger(MindServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(MindServiceImpl.class);
 
     @Autowired
     private JdbcTemplate template;
@@ -45,8 +45,8 @@ public class MindServiceImpl implements MindService {
     public String recall(@RequestBody String something) {
         final int latency = SleepUtil.sleepRandomly(100);
         logger.info("I lost my mind for {} ms.", latency);
-        final Integer appId = 1;
-        final RBucket<String> bucket = redissonClient.getBucket(appId.toString());
+        final int appId = 1;
+        final RBucket<String> bucket = redissonClient.getBucket(Integer.toString(appId));
         String appName = bucket.get();
         if (appName == null) {
             appName = template.execute("select name from application where id = ?",

@@ -15,7 +15,7 @@ import com.test.tracing.service.SpeakService;
 @RequestMapping("/speak")
 public class SpeakServiceImpl implements SpeakService {
 
-    private static Logger logger = LoggerFactory.getLogger(SpeakServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(SpeakServiceImpl.class);
 
     @Autowired
     private MindService mindService;

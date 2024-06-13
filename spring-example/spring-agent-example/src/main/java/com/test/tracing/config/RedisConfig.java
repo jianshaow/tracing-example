@@ -12,8 +12,7 @@ public class RedisConfig {
     @Bean
     public RedissonClient redissonClient() {
         final Config config = new Config();
-        config.useSingleServer().setAddress("redis://localhost:6379").setClientName("echo-service");
-        final RedissonClient redissonClient = Redisson.create(config);
-        return redissonClient;
+        config.useSingleServer().setAddress("redis://host.docker.internal:6379").setClientName("echo-service");
+        return Redisson.create(config);
     }
 }

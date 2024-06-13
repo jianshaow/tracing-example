@@ -9,7 +9,7 @@ import com.test.tracing.SpeakService;
 
 public class EchoServiceImpl implements EchoService {
 
-    private static Logger logger = LoggerFactory.getLogger(AuralServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(AuralServiceImpl.class);
 
     private AuralService auralService;
 

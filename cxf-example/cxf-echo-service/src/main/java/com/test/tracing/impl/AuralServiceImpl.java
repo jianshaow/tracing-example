@@ -11,15 +11,14 @@ import io.opentelemetry.instrumentation.annotations.WithSpan;
 
 public class AuralServiceImpl implements AuralService {
 
-    private static Logger logger = LoggerFactory.getLogger(AuralServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(AuralServiceImpl.class);
 
     private MindService mindService;
 
     @Override
     public String hear(String msg) {
         beforeCallMindService(msg);
-        final String result = mindService.recall(msg);
-        return result;
+        return mindService.recall(msg);
     }
 
     @WithSpan

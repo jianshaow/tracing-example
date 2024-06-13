@@ -10,7 +10,7 @@ import io.opentelemetry.instrumentation.annotations.WithSpan;
 
 public class MindServiceImpl implements MindService {
 
-    private static Logger logger = LoggerFactory.getLogger(MindServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(MindServiceImpl.class);
 
     private JdbcTemplate template;
 

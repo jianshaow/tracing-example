@@ -15,7 +15,7 @@ import com.test.tracing.service.MindService;
 @RequestMapping("/aural")
 public class AuralServiceImpl implements AuralService {
 
-    private static Logger logger = LoggerFactory.getLogger(AuralServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(AuralServiceImpl.class);
 
     @Autowired
     private MindService mindService;
@@ -25,8 +25,7 @@ public class AuralServiceImpl implements AuralService {
     public String hear(@RequestBody String msg) {
         final int latency = SleepUtil.sleepRandomly(100);
         logger.info("I got the msg finally in {} ms.", latency);
-        final String result = mindService.recall(msg);
-        return result;
+        return mindService.recall(msg);
     }
 
     public void setMindService(MindService mindService) {

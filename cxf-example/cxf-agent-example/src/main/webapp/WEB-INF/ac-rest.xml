@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:jaxrs-client="http://cxf.apache.org/jaxrs-client"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:jaxrs-client="http://cxf.apache.org/jaxrs-client"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
         http://cxf.apache.org/jaxrs-client http://cxf.apache.org/schemas/jaxrs-client.xsd"
-    default-lazy-init="true">
+       default-lazy-init="true">
 
     <jaxrs:server id="echoServiceServer" address="/">
         <jaxrs:serviceBeans>
-            <ref bean="echoService" />
-            <ref bean="auralService" />
-            <ref bean="mindService" />
-            <ref bean="speakService" />
+            <ref bean="echoService"/>
+            <ref bean="auralService"/>
+            <ref bean="mindService"/>
+            <ref bean="speakService"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
-            <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
+            <bean class="com.fasterxml.jackson.jakarta.rs.json.JacksonJsonProvider"/>
         </jaxrs:providers>
     </jaxrs:server>
 
     <jaxrs-client:client id="auralServiceClient" address="http://localhost:8080/"
-        serviceClass="com.test.tracing.AuralService" threadSafe="true">
+                         serviceClass="com.test.tracing.AuralService" threadSafe="true">
         <jaxrs-client:providers>
-            <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
+            <bean class="com.fasterxml.jackson.jakarta.rs.json.JacksonJsonProvider"/>
         </jaxrs-client:providers>
     </jaxrs-client:client>
 
     <jaxrs-client:client id="mindServiceClient" address="http://localhost:8080/"
-        serviceClass="com.test.tracing.MindService" threadSafe="true">
+                         serviceClass="com.test.tracing.MindService" threadSafe="true">
         <jaxrs-client:providers>
-            <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
+            <bean class="com.fasterxml.jackson.jakarta.rs.json.JacksonJsonProvider"/>
         </jaxrs-client:providers>
     </jaxrs-client:client>
 
     <jaxrs-client:client id="speakServiceClient" address="http://localhost:8080/"
-        serviceClass="com.test.tracing.SpeakService" threadSafe="true">
+                         serviceClass="com.test.tracing.SpeakService" threadSafe="true">
         <jaxrs-client:providers>
-            <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
+            <bean class="com.fasterxml.jackson.jakarta.rs.json.JacksonJsonProvider"/>
         </jaxrs-client:providers>
     </jaxrs-client:client>
 </beans>
