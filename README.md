@@ -26,7 +26,7 @@ CREATE TABLE `mydb`.`application` (
   PRIMARY KEY (`id`)
 );
 
-INSERT INTO application VALUES (1, 'test');
+INSERT INTO `mydb`.`application` VALUES (1, 'test');
 ~~~
 
 * Cassandra server
