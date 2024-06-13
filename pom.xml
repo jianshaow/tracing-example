@@ -71,6 +71,7 @@
             <jettyXmls>
 			  <jettyXml>etc/jetty.xml</jettyXml>
 		    </jettyXmls>
+            <deployMode>FORK</deployMode>
             <jvmArgs>
               -javaagent:${agent.jar}
               -Dotel.javaagent.extensions=${extension.dir}
