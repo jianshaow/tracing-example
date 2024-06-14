@@ -3,5 +3,5 @@
 ```shell
 mvn clean install
 
-mvn jetty:run
+mvn jetty:run -Djetty.deployMode=FORK
 ```

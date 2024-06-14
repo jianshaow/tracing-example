@@ -10,7 +10,6 @@ mvn jetty:run -Djetty.deployMode=FORK
 
 Stop jetty with command below in another terminal
 
-
 ```shell
 mvn jetty:stop
 ```
