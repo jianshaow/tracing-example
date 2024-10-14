@@ -28,7 +28,7 @@
     <spring-boot.version>3.2.6</spring-boot.version>
     <jaeger.version>1.8.1</jaeger.version>
     <cxf.version>4.0.4</cxf.version>
-    <jetty.version>11.0.21</jetty.version>
+    <jetty.version>11.0.24</jetty.version>
     <feign.version>13.2.1</feign.version>
     <jackson.version>2.17.1</jackson.version>
     <slf4j-api.version>2.0.13</slf4j-api.version>
