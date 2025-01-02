@@ -32,7 +32,7 @@
     <feign.version>13.2.1</feign.version>
     <jackson.version>2.17.1</jackson.version>
     <slf4j-api.version>2.0.13</slf4j-api.version>
-    <logback.version>1.5.6</logback.version>
+    <logback.version>1.5.13</logback.version>
     <httpclient.version>4.5.14</httpclient.version>
     <servlet-api.version>6.1.0</servlet-api.version>
     <jaxrs-api.version>4.0.0</jaxrs-api.version>
